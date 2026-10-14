@@ -153,7 +153,15 @@ html.lenis, html.lenis body { height: auto; }
   bottom: 84px !important;
 }
 
+/* Move hero scroll hint comfortably above floating bottom nav */
+.hero-scroll-hint {
+  bottom: 96px !important;
+}
+
 @media (max-width: 1024px) {
+  .hero-scroll-hint {
+    bottom: 86px !important;
+  }
   #contact .section-shell {
     padding-bottom: 128px !important;
   }

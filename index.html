@@ -135,12 +135,23 @@
           ];
 
           function updateActiveOnScroll() {
-            if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100) {
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+
+            // If at or near the very top of the page, always activate Home
+            if (scrollY < 120) {
+              setActive('center');
+              return;
+            }
+
+            // If scrolled to the bottom of the page, activate Contact
+            const scrollBottom = window.innerHeight + scrollY;
+            const docHeight = document.documentElement.scrollHeight;
+            if (docHeight > window.innerHeight + 300 && scrollBottom >= docHeight - 120) {
               setActive('contact');
               return;
             }
 
-            const scrollMid = window.scrollY + window.innerHeight * 0.4;
+            const scrollMid = scrollY + window.innerHeight * 0.4;
             let activeNav = 'center';
 
             for (const item of sectionMap) {
@@ -168,6 +179,11 @@
 
           window.addEventListener('scroll', updateActiveOnScroll, { passive: true });
           updateActiveOnScroll();
+
+          // Re-evaluate after React mounts elements
+          setTimeout(updateActiveOnScroll, 400);
+          setTimeout(updateActiveOnScroll, 1200);
+          setTimeout(updateActiveOnScroll, 2500);
         }
 
         if (document.readyState === 'loading') {
