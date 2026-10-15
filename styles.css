@@ -158,7 +158,7 @@ html.lenis, html.lenis body { height: auto; }
     display: block;
     pointer-events: none;
     user-select: none;
-    transform-origin: 50.31% 49.14%;
+    transform-origin: 49.96% 49.08%;
     animation: compassNeedleSpin 14s linear infinite;
     will-change: transform;
     transition: filter 0.28s ease;
