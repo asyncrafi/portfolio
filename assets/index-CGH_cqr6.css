@@ -39,6 +39,21 @@
   .hero-scroll-hint {
     display: none !important;
   }
+
+  /* Desktop Content Container Clearance (> 1024px)
+     Guarantees generous clearance from the fixed left side rail (left: 28px, width: 52px)
+     across all desktop and laptop resolutions (1025px - 1440px+) so text and icons never collide. */
+  .section-shell {
+    width: min(1180px, calc(100% - 320px)) !important;
+    max-width: 1180px !important;
+    margin-inline: auto !important;
+  }
+
+  .talk-container {
+    width: min(1180px, calc(100% - 320px)) !important;
+    max-width: 1180px !important;
+    margin-inline: auto !important;
+  }
 }
 
 /* ==========================================================================
