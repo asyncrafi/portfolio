@@ -518,35 +518,42 @@ html, body {
 }
 
 /* Hero Typography (Desktop) */
-.hero-title {
-  font-size: clamp(3rem, 7vw, 7.2rem) !important;
-  letter-spacing: 0.02em !important;
-  line-height: 0.96 !important;
-  white-space: normal !important;
-  text-align: center !important;
-}
+@media (min-width: 1025px) {
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 7.2rem) !important;
+    letter-spacing: 0.02em !important;
+    line-height: 0.96 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    margin-bottom: 24px !important;
+  }
 
-.hero-subtitle-text {
-  letter-spacing: 0.28em !important;
-  text-transform: uppercase !important;
-  color: #d4d4d8 !important;
-}
+  .hero-subtitle {
+    margin: 0 !important;
+  }
 
-.hero-nickname {
-  margin: 10px 0 0 0;
-  display: block;
-  text-align: center;
-}
+  .hero-subtitle-text {
+    letter-spacing: 0.28em !important;
+    text-transform: uppercase !important;
+    color: #d4d4d8 !important;
+  }
 
-.hero-nickname-text {
-  font-family: var(--sans);
-  font-size: clamp(0.85rem, 1.2vw, 1.15rem);
-  font-weight: 500;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: #71717a;
-  display: inline-block;
-  opacity: 0.85;
+  .hero-nickname {
+    margin: 34px 0 0 0 !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .hero-nickname-text {
+    font-family: var(--sans);
+    font-size: clamp(0.85rem, 1.2vw, 1.15rem);
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #71717a;
+    display: inline-block;
+    opacity: 0.85;
+  }
 }
 
 /* ==========================================================================
