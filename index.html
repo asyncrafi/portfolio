@@ -49,8 +49,8 @@
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
     <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=11"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=12">
-    <link rel="stylesheet" href="./styles.css?v=12">
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=13">
+    <link rel="stylesheet" href="./styles.css?v=13">
   </head>
   <body>
     <div id="root"></div>
@@ -205,21 +205,84 @@
           bindSmoothScroll(mobileItems);
           bindSmoothScroll(desktopItems);
 
+          function smoothScrollSlow(targetY, duration = 1500) {
+            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+              window.lenis.scrollTo(targetY, {
+                duration: duration / 1000,
+                easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+              });
+              return;
+            }
+
+            const startY = window.scrollY || window.pageYOffset || 0;
+            const distance = targetY - startY;
+            if (Math.abs(distance) < 2) return;
+            const startTime = performance.now();
+
+            function step(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const ease = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+              window.scrollTo(0, startY + distance * ease);
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              }
+            }
+            requestAnimationFrame(step);
+          }
+
           if (brandBtn) {
             brandBtn.addEventListener('click', function(e) {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              smoothScrollSlow(0, 1600);
               setActive('center');
             });
           }
 
           if (scrollBtn) {
-            scrollBtn.addEventListener('click', function() {
-              const statement = document.getElementById('statement') || document.getElementById('skills');
-              if (statement) {
-                statement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            function getScrollTargets() {
+              const ids = ['center', 'statement', 'experience', 'skills', 'projects', 'contact'];
+              const targets = [];
+              ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                  const rect = el.getBoundingClientRect();
+                  targets.push({ id, top: window.scrollY + rect.top, el });
+                }
+              });
+              targets.sort((a, b) => a.top - b.top);
+              return targets;
+            }
+
+            scrollBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              const scrollY = window.scrollY || window.pageYOffset || 0;
+              const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+              const isUpMode = scrollBtn.classList.contains('is-scroll-up');
+
+              if (isUpMode) {
+                // Smooth slow scroll back to top
+                smoothScrollSlow(0, 1600);
+                setActive('center');
               } else {
-                window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+                // Smooth slow scroll to next section down
+                const targets = getScrollTargets();
+                let nextTarget = null;
+                for (let t of targets) {
+                  if (t.top > scrollY + 80) {
+                    nextTarget = t;
+                    break;
+                  }
+                }
+                if (nextTarget) {
+                  smoothScrollSlow(nextTarget.top, 1500);
+                  const mapped = sectionMap.find(m => m.id === nextTarget.id);
+                  if (mapped) setActive(mapped.navId);
+                } else {
+                  smoothScrollSlow(maxScroll, 1500);
+                }
               }
             });
           }
@@ -252,12 +315,25 @@
                 desktopRail.classList.remove('is-on-light');
               }
 
-              // Desktop Side Rail Scroll Prompt Fade Out
+              // Desktop Side Rail Scroll Button State (Down vs Up)
               if (scrollBtn) {
-                if (scrollY > 60) {
-                  scrollBtn.classList.add('is-hidden');
+                const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+                const scrollProgress = scrollY / maxScroll;
+                const scrollText = scrollBtn.querySelector('.side-rail-scroll-text');
+                const isNearBottom = scrollProgress >= 0.58 || (scrollY + window.innerHeight >= document.documentElement.scrollHeight - 160);
+
+                if (isNearBottom) {
+                  if (!scrollBtn.classList.contains('is-scroll-up')) {
+                    scrollBtn.classList.add('is-scroll-up');
+                    scrollBtn.setAttribute('aria-label', 'Scroll up to top');
+                    if (scrollText) scrollText.textContent = 'SCROLL UP';
+                  }
                 } else {
-                  scrollBtn.classList.remove('is-hidden');
+                  if (scrollBtn.classList.contains('is-scroll-up')) {
+                    scrollBtn.classList.remove('is-scroll-up');
+                    scrollBtn.setAttribute('aria-label', 'Scroll down');
+                    if (scrollText) scrollText.textContent = 'SCROLL DOWN';
+                  }
                 }
               }
             } else if (!isDesktop && mobileNav) {

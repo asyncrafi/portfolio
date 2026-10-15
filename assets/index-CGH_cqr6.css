@@ -261,7 +261,7 @@
     opacity: 1;
   }
 
-  /* 3. Bottom Rotated Scroll Prompt */
+  /* 3. Bottom Rotated Scroll Prompt (Bidirectional Down/Up) */
   .side-rail-scroll {
     pointer-events: auto;
     display: flex;
@@ -270,7 +270,11 @@
     gap: 12px;
     cursor: pointer;
     user-select: none;
-    transition: opacity 0.4s ease, transform 0.4s ease, color 0.28s ease;
+    transition: opacity 0.4s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.28s ease;
+  }
+
+  .side-rail-scroll:hover {
+    transform: translateY(-2px);
   }
 
   .side-rail-scroll-line {
@@ -279,18 +283,25 @@
     background: currentColor;
     opacity: 0.3;
     border-radius: 1px;
-    transition: background-color 0.28s ease, opacity 0.28s ease;
+    transition: background-color 0.28s ease, opacity 0.28s ease, height 0.3s ease;
   }
 
   .side-rail-scroll:hover .side-rail-scroll-line {
     opacity: 0.6;
+    height: 44px;
   }
 
   .side-rail-scroll-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     animation: sideRailBounce 2s ease-in-out infinite;
+  }
+
+  .side-rail-scroll.is-scroll-up .side-rail-scroll-arrow {
+    transform: rotate(180deg);
+    animation: sideRailBounceUp 2s ease-in-out infinite;
   }
 
   .side-rail-scroll-arrow svg {
@@ -308,6 +319,7 @@
     letter-spacing: 0.24em;
     text-transform: uppercase;
     line-height: 1;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
   .side-rail-scroll.is-hidden {
@@ -322,6 +334,15 @@
     }
     50% {
       transform: translateY(4px);
+    }
+  }
+
+  @keyframes sideRailBounceUp {
+    0%, 100% {
+      transform: rotate(180deg) translateY(0);
+    }
+    50% {
+      transform: rotate(180deg) translateY(4px);
     }
   }
 
