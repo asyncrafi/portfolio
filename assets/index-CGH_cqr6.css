@@ -66,83 +66,89 @@
     transition: color 0.28s ease;
   }
 
-  /* 1. Top Monogram Brand Anchor */
-  .side-rail-brand {
+  .side-rail-top-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 1. Top Sunflower Brand Anchor */
+  .side-rail-flower-link {
     pointer-events: auto;
     position: relative;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     cursor: pointer;
-    transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
-                background 0.28s ease,
-                border-color 0.28s ease,
-                box-shadow 0.28s ease,
-                color 0.28s ease;
+    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .side-rail-brand:hover {
-    transform: scale(1.08);
+  .side-rail-flower-link:hover {
+    transform: rotate(12deg) scale(1.1);
   }
 
-  .side-rail-monogram {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    text-transform: uppercase;
+  .side-rail-flower-img {
+    width: 36px;
+    height: 36px;
+    display: block;
+    object-fit: contain;
+    transition: filter 0.28s ease;
   }
 
-  /* 2. Middle Vertical Nav Dock */
-  .side-rail-nav {
+  /* Vertical stem line between flower and navigation icons */
+  .side-rail-stem-line {
+    width: 1.5px;
+    height: 38px;
+    background: currentColor;
+    opacity: 0.3;
+    margin: 14px 0 16px;
+    border-radius: 1px;
+    transition: background-color 0.28s ease, opacity 0.28s ease;
+  }
+
+  /* 2. Middle Vertical Nav Group */
+  .side-rail-nav-group {
     pointer-events: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 10px 6px;
-    border-radius: 9999px;
-    transition: background 0.28s ease,
-                border-color 0.28s ease,
-                box-shadow 0.28s ease;
+    gap: 26px;
   }
 
   .side-rail-item {
     position: relative;
     width: 42px;
     height: 42px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     cursor: pointer;
-    transition: color 0.22s ease,
+    border-radius: 50%;
+    color: currentColor;
+    opacity: 0.7;
+    transition: opacity 0.22s ease,
                 background 0.22s ease,
                 transform 0.22s ease;
   }
 
   .side-rail-item:hover {
-    transform: scale(1.08);
+    opacity: 1;
+    transform: scale(1.12);
+  }
+
+  .side-rail-item.is-active {
+    opacity: 1;
   }
 
   .side-rail-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: block;
     transition: transform 0.2s ease;
-  }
-
-  .side-rail-divider {
-    width: 16px;
-    height: 1px;
-    flex-shrink: 0;
-    transition: background 0.22s ease;
   }
 
   /* Tooltip Pill to the right */
@@ -166,25 +172,28 @@
   }
 
   .side-rail-item:hover .side-rail-tooltip,
-  .side-rail-brand:hover .side-rail-tooltip {
+  .side-rail-flower-link:hover .side-rail-tooltip {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
   }
 
-  /* Active Indicator */
+  /* Active Indicator: Clean rounded vertical bar on the left */
   .side-rail-indicator {
     position: absolute;
-    left: -4px;
+    left: -14px;
     top: 50%;
     transform: translateY(-50%) scaleY(0);
-    width: 3px;
-    height: 18px;
+    width: 3.5px;
+    height: 22px;
     border-radius: 99px;
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.22s ease;
+    background: currentColor;
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
   }
 
   .side-rail-item.is-active .side-rail-indicator {
     transform: translateY(-50%) scaleY(1);
+    opacity: 1;
   }
 
   /* 3. Bottom Rotated Scroll Prompt */
@@ -193,7 +202,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
     user-select: none;
     transition: opacity 0.4s ease, transform 0.4s ease, color 0.28s ease;
@@ -216,9 +225,9 @@
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     line-height: 1;
   }
@@ -244,56 +253,19 @@
     color: #ffffff;
   }
 
-  .desktop-side-rail.is-on-dark .side-rail-brand,
-  .desktop-side-rail:not(.is-on-light) .side-rail-brand {
-    background: rgba(18, 18, 22, 0.45);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    color: #ffffff;
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-brand:hover,
-  .desktop-side-rail:not(.is-on-light) .side-rail-brand:hover {
-    background: rgba(26, 26, 32, 0.65);
-    border-color: rgba(255, 255, 255, 0.28);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-nav,
-  .desktop-side-rail:not(.is-on-light) .side-rail-nav {
-    background: rgba(18, 18, 22, 0.45);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.45);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-item,
-  .desktop-side-rail:not(.is-on-light) .side-rail-item {
-    color: rgba(255, 255, 255, 0.62);
+  .desktop-side-rail.is-on-dark .side-rail-flower-img,
+  .desktop-side-rail:not(.is-on-light) .side-rail-flower-img {
+    filter: brightness(0) invert(1);
   }
 
   .desktop-side-rail.is-on-dark .side-rail-item:hover,
   .desktop-side-rail:not(.is-on-light) .side-rail-item:hover {
-    color: #ffffff;
     background: rgba(255, 255, 255, 0.1);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-item.is-active,
-  .desktop-side-rail:not(.is-on-light) .side-rail-item.is-active {
-    color: #ffffff;
   }
 
   .desktop-side-rail.is-on-dark .side-rail-indicator,
   .desktop-side-rail:not(.is-on-light) .side-rail-indicator {
-    background: #ffffff;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-divider,
-  .desktop-side-rail:not(.is-on-light) .side-rail-divider {
-    background: rgba(255, 255, 255, 0.14);
   }
 
   .desktop-side-rail.is-on-dark .side-rail-tooltip,
@@ -304,63 +276,21 @@
     backdrop-filter: blur(12px);
   }
 
-  .desktop-side-rail.is-on-dark .side-rail-scroll,
-  .desktop-side-rail:not(.is-on-light) .side-rail-scroll {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-scroll:hover,
-  .desktop-side-rail:not(.is-on-light) .side-rail-scroll:hover {
-    color: #ffffff;
-  }
-
   /* Dynamic Contrast: LIGHT BACKGROUND (#statement, #experience, #contact) */
   .desktop-side-rail.is-on-light {
     color: #08060d;
   }
 
-  .desktop-side-rail.is-on-light .side-rail-brand {
-    background: rgba(255, 255, 255, 0.68);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(8, 6, 13, 0.1);
-    color: #08060d;
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-brand:hover {
-    background: rgba(255, 255, 255, 0.88);
-    border-color: rgba(8, 6, 13, 0.18);
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-nav {
-    background: rgba(255, 255, 255, 0.68);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(8, 6, 13, 0.1);
-    box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.08);
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-item {
-    color: rgba(8, 6, 13, 0.55);
+  .desktop-side-rail.is-on-light .side-rail-flower-img {
+    filter: brightness(0);
   }
 
   .desktop-side-rail.is-on-light .side-rail-item:hover {
-    color: #08060d;
     background: rgba(8, 6, 13, 0.06);
   }
 
-  .desktop-side-rail.is-on-light .side-rail-item.is-active {
-    color: #08060d;
-  }
-
   .desktop-side-rail.is-on-light .side-rail-indicator {
-    background: #08060d;
     box-shadow: none;
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-divider {
-    background: rgba(8, 6, 13, 0.1);
   }
 
   .desktop-side-rail.is-on-light .side-rail-tooltip {
