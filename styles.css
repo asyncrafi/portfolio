@@ -116,7 +116,7 @@ html.lenis, html.lenis body { height: auto; }
   }
 
   .side-rail-flower-link:hover {
-    transform: rotate(12deg) scale(1.1);
+    transform: scale(1.12);
   }
 
   .side-rail-flower-img {
@@ -125,6 +125,56 @@ html.lenis, html.lenis body { height: auto; }
     display: block;
     object-fit: contain;
     transition: filter 0.28s ease;
+  }
+
+  /* Interactive Minimalist Compass */
+  .side-rail-compass {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.28s ease;
+  }
+
+  .side-rail-compass .compass-circle {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .side-rail-compass .compass-needle {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    transform-origin: 50.31% 49.14%;
+    animation: compassNeedleSpin 14s linear infinite;
+    will-change: transform;
+    transition: filter 0.28s ease;
+  }
+
+  .side-rail-flower-link:hover .compass-needle {
+    animation-duration: 3s;
+  }
+
+  @keyframes compassNeedleSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   /* Vertical stem line between flower and navigation icons */
@@ -296,7 +346,9 @@ html.lenis, html.lenis body { height: auto; }
   }
 
   .desktop-side-rail.is-on-dark .side-rail-flower-img,
-  .desktop-side-rail:not(.is-on-light) .side-rail-flower-img {
+  .desktop-side-rail:not(.is-on-light) .side-rail-flower-img,
+  .desktop-side-rail.is-on-dark .side-rail-compass,
+  .desktop-side-rail:not(.is-on-light) .side-rail-compass {
     filter: brightness(0) invert(1);
   }
 
@@ -323,7 +375,8 @@ html.lenis, html.lenis body { height: auto; }
     color: #08060d;
   }
 
-  .desktop-side-rail.is-on-light .side-rail-flower-img {
+  .desktop-side-rail.is-on-light .side-rail-flower-img,
+  .desktop-side-rail.is-on-light .side-rail-compass {
     filter: brightness(0);
   }
 
