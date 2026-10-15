@@ -48,14 +48,85 @@
       }
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
-    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=6"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=6">
-    <link rel="stylesheet" href="./styles.css?v=6">
+    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=7"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=7">
+    <link rel="stylesheet" href="./styles.css?v=7">
   </head>
   <body>
     <div id="root"></div>
 
-    <!-- Floating Bottom Navigation Dock -->
+    <!-- Desktop Vertical Side Rail (> 1024px) -->
+    <aside class="desktop-side-rail" id="desktop-side-rail" aria-label="Desktop Side Navigation">
+      <!-- 1. Top Monogram Brand Anchor -->
+      <a href="#center" class="side-rail-brand" aria-label="Md Shamsuzzaman - Home">
+        <span class="side-rail-monogram">MS</span>
+        <span class="side-rail-tooltip">Back to top</span>
+      </a>
+
+      <!-- 2. Middle Vertical Navigation Dock -->
+      <nav class="side-rail-nav" aria-label="Desktop Quick Navigation">
+        <a href="#center" class="side-rail-item is-active" data-section="center" aria-label="Home">
+          <span class="side-rail-indicator"></span>
+          <span class="side-rail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+          </span>
+          <span class="side-rail-tooltip">Home</span>
+        </a>
+
+        <div class="side-rail-divider" aria-hidden="true"></div>
+
+        <a href="#skills" class="side-rail-item" data-section="experience" aria-label="Skills & Stack">
+          <span class="side-rail-indicator"></span>
+          <span class="side-rail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="7 8 3 12 7 16"></polyline>
+              <polyline points="17 8 21 12 17 16"></polyline>
+              <line x1="14" y1="4" x2="10" y2="20"></line>
+            </svg>
+          </span>
+          <span class="side-rail-tooltip">Skills</span>
+        </a>
+
+        <div class="side-rail-divider" aria-hidden="true"></div>
+
+        <a href="#projects" class="side-rail-item" data-section="projects" aria-label="Projects">
+          <span class="side-rail-indicator"></span>
+          <span class="side-rail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </span>
+          <span class="side-rail-tooltip">Projects</span>
+        </a>
+
+        <div class="side-rail-divider" aria-hidden="true"></div>
+
+        <a href="#contact" class="side-rail-item" data-section="contact" aria-label="Contact">
+          <span class="side-rail-indicator"></span>
+          <span class="side-rail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </span>
+          <span class="side-rail-tooltip">Contact</span>
+        </a>
+      </nav>
+
+      <!-- 3. Bottom Rotated Scroll Prompt -->
+      <div class="side-rail-scroll" id="side-rail-scroll" aria-label="Scroll down">
+        <span class="side-rail-scroll-arrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+        <span class="side-rail-scroll-text">scroll down</span>
+      </div>
+    </aside>
+
+    <!-- Floating Bottom Navigation Dock (Mobile <= 1024px) -->
     <nav class="floating-bottom-nav" id="floating-bottom-nav" aria-label="Quick Navigation">
       <a href="#center" class="floating-nav-item is-active" data-section="center" aria-label="Home">
         <span class="floating-nav-icon">
@@ -106,22 +177,49 @@
     <script>
       (function() {
         function initFloatingNav() {
-          const nav = document.getElementById('floating-bottom-nav');
-          if (!nav) return;
-          const items = Array.from(nav.querySelectorAll('.floating-nav-item'));
+          const mobileNav = document.getElementById('floating-bottom-nav');
+          const desktopRail = document.getElementById('desktop-side-rail');
+          const mobileItems = mobileNav ? Array.from(mobileNav.querySelectorAll('.floating-nav-item')) : [];
+          const desktopItems = desktopRail ? Array.from(desktopRail.querySelectorAll('.side-rail-item')) : [];
+          const brandBtn = desktopRail ? desktopRail.querySelector('.side-rail-brand') : null;
+          const scrollBtn = desktopRail ? desktopRail.querySelector('.side-rail-scroll') : null;
 
-          items.forEach(item => {
-            item.addEventListener('click', function(e) {
+          function bindSmoothScroll(elements) {
+            elements.forEach(item => {
+              item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                  targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  const sec = this.getAttribute('data-section');
+                  if (sec) setActive(sec);
+                }
+              });
+            });
+          }
+
+          bindSmoothScroll(mobileItems);
+          bindSmoothScroll(desktopItems);
+
+          if (brandBtn) {
+            brandBtn.addEventListener('click', function(e) {
               e.preventDefault();
-              const targetId = this.getAttribute('href');
-              const targetEl = document.querySelector(targetId);
-              if (targetEl) {
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                items.forEach(i => i.classList.remove('is-active'));
-                this.classList.add('is-active');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              setActive('center');
+            });
+          }
+
+          if (scrollBtn) {
+            scrollBtn.addEventListener('click', function() {
+              const statement = document.getElementById('statement') || document.getElementById('skills');
+              if (statement) {
+                statement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              } else {
+                window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
               }
             });
-          });
+          }
 
           const sectionMap = [
             { id: 'center', navId: 'center' },
@@ -132,49 +230,66 @@
             { id: 'contact', navId: 'contact' }
           ];
 
-          // Light background sections with white background
-          const lightSections = ['statement', 'experience', 'contact'];
-
           function updateNavState() {
             const scrollY = window.scrollY || window.pageYOffset || 0;
             const isDesktop = window.innerWidth > 1024;
 
-            // 1. DYNAMIC CONTRAST OBSERVER (Transparent Glass Adaptation)
-            // Use exact geometric element-at-point probing so overlapping, sticky, and negative-margin
-            // sections are detected according to their real visual stacking order.
-            const navRect = nav.getBoundingClientRect();
-            const probeY = navRect.top + navRect.height / 2;
-            const probeX = Math.max(16, isDesktop ? 40 : 16);
+            if (isDesktop && desktopRail) {
+              // Desktop Contrast Detection: Probe directly under the center of the side rail
+              const probeX = 90;
+              const probeY = window.innerHeight * 0.5;
+              const probedEl = document.elementFromPoint(probeX, probeY);
+              const isOverLight = !!(probedEl && probedEl.closest('#statement, #experience, #contact'));
 
-            let probedEl = document.elementFromPoint(probeX, probeY);
-            if (!probedEl || probedEl === nav || nav.contains(probedEl)) {
-              const altX = (navRect.left - 24 > 0) ? (navRect.left - 24) : (navRect.right + 24);
-              probedEl = document.elementFromPoint(altX, probeY);
-            }
-
-            const lightSection = probedEl ? probedEl.closest('#statement, #experience, #contact') : null;
-            const isOverLight = !!lightSection;
-
-            if (isOverLight) {
-              nav.classList.add('is-on-light');
-              nav.classList.remove('is-on-dark');
-            } else {
-              nav.classList.add('is-on-dark');
-              nav.classList.remove('is-on-light');
-            }
-
-            // 2. HERO SCROLL HINT FADE OUT
-            const scrollHint = document.querySelector('.hero-scroll-hint');
-            if (scrollHint) {
-              if (scrollY > 8) {
-                scrollHint.classList.add('is-hidden');
+              if (isOverLight) {
+                desktopRail.classList.add('is-on-light');
+                desktopRail.classList.remove('is-on-dark');
               } else {
-                scrollHint.classList.remove('is-hidden');
+                desktopRail.classList.add('is-on-dark');
+                desktopRail.classList.remove('is-on-light');
               }
-            }
 
-            // 3. EXPERIENCE TIMELINE ACTIVE YEARS & MARKER ON MOBILE
-            if (!isDesktop) {
+              // Desktop Side Rail Scroll Prompt Fade Out
+              if (scrollBtn) {
+                if (scrollY > 60) {
+                  scrollBtn.classList.add('is-hidden');
+                } else {
+                  scrollBtn.classList.remove('is-hidden');
+                }
+              }
+            } else if (!isDesktop && mobileNav) {
+              // Mobile Contrast Detection: Probe directly under the bottom dock
+              const navRect = mobileNav.getBoundingClientRect();
+              const probeY = navRect.top + navRect.height / 2;
+              const probeX = 16;
+
+              let probedEl = document.elementFromPoint(probeX, probeY);
+              if (!probedEl || probedEl === mobileNav || mobileNav.contains(probedEl)) {
+                const altX = (navRect.left - 24 > 0) ? (navRect.left - 24) : (navRect.right + 24);
+                probedEl = document.elementFromPoint(altX, probeY);
+              }
+
+              const isOverLight = !!(probedEl && probedEl.closest('#statement, #experience, #contact'));
+
+              if (isOverLight) {
+                mobileNav.classList.add('is-on-light');
+                mobileNav.classList.remove('is-on-dark');
+              } else {
+                mobileNav.classList.add('is-on-dark');
+                mobileNav.classList.remove('is-on-light');
+              }
+
+              // Mobile Hero Scroll Hint Fade Out
+              const scrollHint = document.querySelector('.hero-scroll-hint');
+              if (scrollHint) {
+                if (scrollY > 8) {
+                  scrollHint.classList.add('is-hidden');
+                } else {
+                  scrollHint.classList.remove('is-hidden');
+                }
+              }
+
+              // Mobile Experience Timeline Active Years & Marker
               const expSection = document.getElementById('experience');
               if (expSection) {
                 const expItems = Array.from(expSection.querySelectorAll('.experience-item'));
@@ -184,7 +299,6 @@
 
                 expItems.forEach((item, idx) => {
                   const rect = item.getBoundingClientRect();
-                  // Reveal item when entering viewport
                   if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
                     item.classList.add('is-revealed');
                   }
@@ -206,7 +320,6 @@
                     }
                   });
 
-                  // Move progress marker on timeline
                   const activeItem = expItems[closestIndex];
                   const marker = expSection.querySelector('.experience-progress-marker');
                   if (marker && activeItem) {
@@ -221,7 +334,7 @@
               }
             }
 
-            // 4. SCROLL SPY FOR NAVIGATION ITEMS
+            // Scroll Spy for Navigation Items (Synchronizes both Mobile and Desktop)
             if (scrollY < 120) {
               setActive('center');
               return;
@@ -251,12 +364,11 @@
           }
 
           function setActive(sectionId) {
-            items.forEach(item => {
-              if (item.getAttribute('data-section') === sectionId) {
-                item.classList.add('is-active');
-              } else {
-                item.classList.remove('is-active');
-              }
+            mobileItems.forEach(item => {
+              item.classList.toggle('is-active', item.getAttribute('data-section') === sectionId);
+            });
+            desktopItems.forEach(item => {
+              item.classList.toggle('is-active', item.getAttribute('data-section') === sectionId);
             });
           }
 
@@ -275,7 +387,6 @@
           window.addEventListener('resize', requestTick, { passive: true });
           updateNavState();
 
-          // Re-evaluate after React mounts components
           setTimeout(updateNavState, 200);
           setTimeout(updateNavState, 600);
           setTimeout(updateNavState, 1500);
