@@ -25,29 +25,142 @@ html.lenis, html.lenis body { height: auto; }
   opacity: 0 !important;
 }
 
-/* Floating Bottom Navigation Dock */
+/* Floating Navigation Dock (Top on Desktop, Bottom on Mobile) */
 .floating-bottom-nav {
   position: fixed;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.94);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(8, 6, 13, 0.08);
   border-radius: 9999px;
-  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.14), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
-  padding: 6px 14px;
-  gap: 0;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.28s ease,
+              border-color 0.28s ease,
+              box-shadow 0.28s ease,
+              color 0.28s ease;
 }
 
-.floating-bottom-nav:hover {
-  box-shadow: 0 14px 36px -4px rgba(0, 0, 0, 0.18), 0 6px 14px -2px rgba(0, 0, 0, 0.07);
+/* Desktop: Top of screen, generous luxury spacing */
+@media (min-width: 1025px) {
+  .floating-bottom-nav {
+    top: 24px;
+    bottom: auto;
+    padding: 7px 16px;
+    gap: 10px;
+  }
+
+  .floating-nav-item {
+    min-width: 66px;
+    padding: 9px 18px;
+    border-radius: 9999px;
+    gap: 3px;
+  }
+}
+
+/* Mobile: Bottom of screen */
+@media (max-width: 1024px) {
+  .floating-bottom-nav {
+    top: auto !important;
+    bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
+    padding: 5px 12px !important;
+    gap: 6px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .floating-nav-item {
+    min-width: 52px !important;
+    min-height: 44px !important;
+    padding: 6px 11px !important;
+    border-radius: 9999px !important;
+    gap: 2px !important;
+  }
+}
+
+/* Transparent Glass Theme: Over Dark Background (White Icons) */
+.floating-bottom-nav.is-on-dark,
+.floating-bottom-nav:not(.is-on-light) {
+  background: rgba(18, 18, 22, 0.45);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.45), 0 4px 14px -2px rgba(0, 0, 0, 0.25);
+}
+
+.floating-bottom-nav.is-on-dark:hover,
+.floating-bottom-nav:not(.is-on-light):hover {
+  background: rgba(22, 22, 28, 0.58);
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 16px 42px -4px rgba(0, 0, 0, 0.55), 0 6px 18px -2px rgba(0, 0, 0, 0.35);
+}
+
+.floating-bottom-nav.is-on-dark .floating-nav-item,
+.floating-bottom-nav:not(.is-on-light) .floating-nav-item {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.floating-bottom-nav.is-on-dark .floating-nav-item:hover,
+.floating-bottom-nav:not(.is-on-light) .floating-nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.floating-bottom-nav.is-on-dark .floating-nav-item.is-active,
+.floating-bottom-nav:not(.is-on-light) .floating-nav-item.is-active {
+  color: #ffffff;
+}
+
+.floating-bottom-nav.is-on-dark .floating-nav-indicator,
+.floating-bottom-nav:not(.is-on-light) .floating-nav-indicator {
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.floating-bottom-nav.is-on-dark .floating-nav-divider,
+.floating-bottom-nav:not(.is-on-light) .floating-nav-divider {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Transparent Glass Theme: Over Light Background (Black Icons) */
+.floating-bottom-nav.is-on-light {
+  background: rgba(255, 255, 255, 0.68);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(8, 6, 13, 0.09);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.09), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+.floating-bottom-nav.is-on-light:hover {
+  background: rgba(255, 255, 255, 0.84);
+  border-color: rgba(8, 6, 13, 0.15);
+  box-shadow: 0 16px 42px -4px rgba(0, 0, 0, 0.12), 0 6px 16px -2px rgba(0, 0, 0, 0.06);
+}
+
+.floating-bottom-nav.is-on-light .floating-nav-item {
+  color: rgba(8, 6, 13, 0.58);
+}
+
+.floating-bottom-nav.is-on-light .floating-nav-item:hover {
+  color: #08060d;
+  background: rgba(8, 6, 13, 0.06);
+  transform: translateY(-1px);
+}
+
+.floating-bottom-nav.is-on-light .floating-nav-item.is-active {
+  color: #08060d;
+}
+
+.floating-bottom-nav.is-on-light .floating-nav-indicator {
+  background: #08060d;
+  box-shadow: none;
+}
+
+.floating-bottom-nav.is-on-light .floating-nav-divider {
+  background: rgba(8, 6, 13, 0.09);
 }
 
 .floating-nav-item {
@@ -55,24 +168,9 @@ html.lenis, html.lenis body { height: auto; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 56px;
-  padding: 8px 14px;
   text-decoration: none;
-  color: #71717a;
   cursor: pointer;
-  border-radius: 12px;
-  transition: color 0.2s ease, transform 0.2s ease;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.floating-nav-item:hover {
-  color: #08060d;
-  transform: translateY(-1px);
-}
-
-.floating-nav-item.is-active {
-  color: #08060d;
+  transition: color 0.22s ease, background 0.22s ease, transform 0.22s ease;
 }
 
 .floating-nav-icon {
@@ -92,13 +190,12 @@ html.lenis, html.lenis body { height: auto; }
   display: block;
   width: 20px;
   height: 3px;
-  background: #08060d;
   border-radius: 99px;
   margin-top: 4px;
   transform: scaleX(0);
   opacity: 0;
   transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease, background 0.22s ease;
 }
 
 .floating-nav-item.is-active .floating-nav-indicator {
@@ -108,40 +205,10 @@ html.lenis, html.lenis body { height: auto; }
 
 .floating-nav-divider {
   width: 1px;
-  height: 22px;
-  background: rgba(8, 6, 13, 0.08);
+  height: 20px;
   flex-shrink: 0;
   margin: 0 2px;
-}
-
-/* Dark Mode Adaptation */
-@media (prefers-color-scheme: dark) {
-  .floating-bottom-nav {
-    background: rgba(22, 23, 29, 0.92);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.6), 0 4px 10px -2px rgba(0, 0, 0, 0.4);
-  }
-
-  .floating-bottom-nav:hover {
-    box-shadow: 0 14px 36px -4px rgba(0, 0, 0, 0.7);
-  }
-
-  .floating-nav-item {
-    color: #9ca3af;
-  }
-
-  .floating-nav-item:hover,
-  .floating-nav-item.is-active {
-    color: #f3f4f6;
-  }
-
-  .floating-nav-indicator {
-    background: #f3f4f6;
-  }
-
-  .floating-nav-divider {
-    background: rgba(255, 255, 255, 0.1);
-  }
+  transition: background 0.22s ease;
 }
 
 /* ==========================================================================
@@ -175,17 +242,17 @@ html, body {
   pointer-events: none !important;
 }
 
-/* Clearance for fixed floating bottom nav on desktop */
+/* Desktop spacing adjustments (nav is at top on desktop) */
 #contact {
-  padding-bottom: 120px !important;
+  padding-bottom: 40px !important;
 }
 
 .site-footer {
-  bottom: 84px !important;
+  bottom: 28px !important;
 }
 
 .hero-scroll-hint {
-  bottom: 96px !important;
+  bottom: 48px !important;
 }
 
 /* Hero Typography (Desktop) */
@@ -534,45 +601,60 @@ html, body {
   }
 
   .hero-scroll-hint {
-    bottom: 114px !important;
-    opacity: 1 !important;
+    bottom: 108px !important;
+    transition: opacity 0.4s ease, transform 0.4s ease !important;
+  }
+
+  .hero-scroll-hint.is-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translate(-50%, 10px) !important;
+    transition-delay: 0s !important;
   }
 
   /* ------------------------------------------------------------------------
-     2. STATEMENT SECTION (#statement)
+     2. STATEMENT SECTION (#statement) — Smooth Curtain Slide on Mobile
      ------------------------------------------------------------------------ */
   #statement {
-    min-height: auto !important;
+    min-height: 170svh !important;
     height: auto !important;
-    padding: 80px 20px !important;
+    padding: 0 !important;
     position: relative !important;
     background: #ffffff !important;
+    z-index: 0 !important;
   }
 
   .statement-shell {
-    min-height: auto !important;
-    height: auto !important;
-    position: static !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0 !important;
+    padding: 24px !important;
+    box-sizing: border-box !important;
   }
 
   .statement-shell p {
-    font-size: clamp(2rem, 7.5vw, 3.4rem) !important;
-    max-width: 14ch !important;
-    line-height: 1.15 !important;
+    font-size: clamp(2.4rem, 8.5vw, 3.6rem) !important;
+    max-width: 12ch !important;
+    line-height: 1.08 !important;
     letter-spacing: -0.04em !important;
     text-align: center !important;
+    margin: 0 !important;
+    color: #08060d !important;
+    font-weight: 700 !important;
   }
 
   /* ------------------------------------------------------------------------
-     3. EXPERIENCE SECTION (#experience)
+     3. EXPERIENCE SECTION (#experience) — Interactive Timeline & Year Pop
      ------------------------------------------------------------------------ */
   #experience {
-    padding: 70px 0 80px !important;
+    padding: 70px 0 110px !important;
     background: #ffffff !important;
+    position: relative !important;
   }
 
   .experience-header {
@@ -585,6 +667,28 @@ html, body {
     line-height: 1 !important;
   }
 
+  .experience-timeline {
+    position: relative !important;
+  }
+
+  .experience-timeline::before {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    top: 12px !important;
+    bottom: 30px !important;
+    left: 18px !important;
+    width: 2px !important;
+    background: rgba(8, 6, 13, 0.12) !important;
+    transform: translateX(-50%) !important;
+    z-index: 1 !important;
+  }
+
+  .experience-progress-marker {
+    left: 18px !important;
+    z-index: 3 !important;
+  }
+
   .experience-list {
     --experience-row-gap: 36px !important;
     gap: 36px !important;
@@ -593,16 +697,28 @@ html, body {
 
   .experience-item {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    gap: 12px !important;
     padding-left: 44px !important;
     width: 100% !important;
+    position: relative !important;
   }
 
   .experience-role,
   .experience-summary {
-    opacity: 1 !important;
-    transform: none !important;
     width: 100% !important;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .experience-item:not(.is-revealed) .experience-role,
+  .experience-item:not(.is-revealed) .experience-summary {
+    opacity: 0.25 !important;
+    transform: translateY(16px) !important;
+  }
+
+  .experience-item.is-revealed .experience-role,
+  .experience-item.is-revealed .experience-summary {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
   }
 
   .experience-role h3 {
@@ -617,6 +733,23 @@ html, body {
     height: 32px !important;
   }
 
+  /* Bonus item (TypeScript ESLint) layout fix on mobile */
+  .experience-company-logo-bonus {
+    position: static !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: inline-block !important;
+    flex-shrink: 0 !important;
+  }
+
+  .experience-company-lines-bonus {
+    margin-left: 0 !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    line-height: 1 !important;
+  }
+
   .experience-details {
     max-width: 100% !important;
     font-size: 0.98rem !important;
@@ -624,22 +757,35 @@ html, body {
   }
 
   .experience-year-block {
-    margin-bottom: 6px !important;
+    margin-bottom: 4px !important;
+    align-self: flex-start !important;
   }
 
   .experience-year {
     font-size: 1.25rem !important;
+    color: #8b8595 !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    transition: color 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
   }
 
-  .experience-progress-marker {
-    left: calc(1.36rem + 1px) !important;
+  .experience-year.is-active {
+    color: #08060d !important;
+    transform: scale(1.18) translateX(2px) !important;
+    font-weight: 700 !important;
+  }
+
+  .experience-item.is-active .experience-company-name {
+    transform: scale(1.05) !important;
   }
 
   /* ------------------------------------------------------------------------
-     4. SKILLS SECTION (#skills)
+     4. SKILLS SECTION (#skills) — Covers #statement with smooth curtain slide
      ------------------------------------------------------------------------ */
   #skills {
-    margin-top: 0 !important; /* CRITICAL: removes desktop -100svh pullup overlap */
+    position: relative !important;
+    z-index: 2 !important;
+    margin-top: -70svh !important;
     padding: 70px 0 80px !important;
     background: #000000 !important;
   }
@@ -705,6 +851,8 @@ html, body {
     padding: 0 0 80px 0 !important;
     background: #000000 !important;
     position: relative !important;
+    overflow: clip !important;
+    contain: paint !important;
   }
 
   .projects-shell {
@@ -755,7 +903,7 @@ html, body {
     bottom: 100% !important;
     left: 0 !important;
     right: 0 !important;
-    height: 120px !important;
+    height: max(20px, env(safe-area-inset-top, 20px)) !important;
     background: #000000 !important;
     pointer-events: none !important;
   }
@@ -1015,23 +1163,27 @@ html, body {
   }
 
   /* ------------------------------------------------------------------------
-     7. FLOATING BOTTOM NAVIGATION DOCK
+     7. FLOATING BOTTOM NAVIGATION DOCK (Mobile Spacing)
      ------------------------------------------------------------------------ */
   .floating-bottom-nav {
+    top: auto !important;
     bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
-    padding: 5px 10px !important;
-    max-width: calc(100vw - 28px) !important;
+    padding: 6px 12px !important;
+    gap: 6px !important;
+    max-width: calc(100vw - 24px) !important;
   }
 
   .floating-nav-item {
-    min-width: 46px !important;
+    min-width: 52px !important;
     min-height: 44px !important;
-    padding: 6px 9px !important;
+    padding: 6px 11px !important;
+    border-radius: 9999px !important;
+    gap: 2px !important;
   }
 
   .floating-nav-icon svg {
-    width: 21px !important;
-    height: 21px !important;
+    width: 22px !important;
+    height: 22px !important;
   }
 }
 

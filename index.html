@@ -48,9 +48,9 @@
       }
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
-    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=4"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=4">
-    <link rel="stylesheet" href="./styles.css?v=4">
+    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=6"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=6">
+    <link rel="stylesheet" href="./styles.css?v=6">
   </head>
   <body>
     <div id="root"></div>
@@ -126,22 +126,107 @@
           const sectionMap = [
             { id: 'center', navId: 'center' },
             { id: 'statement', navId: 'center' },
-            { id: 'experience', navId: 'experience' },
             { id: 'skills', navId: 'experience' },
+            { id: 'experience', navId: 'experience' },
             { id: 'projects', navId: 'projects' },
             { id: 'contact', navId: 'contact' }
           ];
 
-          function updateActiveOnScroll() {
-            const scrollY = window.scrollY || window.pageYOffset || 0;
+          // Light background sections with white background
+          const lightSections = ['statement', 'experience', 'contact'];
 
-            // If at or near the very top of the page, always activate Home
+          function updateNavState() {
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            const isDesktop = window.innerWidth > 1024;
+
+            // 1. DYNAMIC CONTRAST OBSERVER (Transparent Glass Adaptation)
+            // Use exact geometric element-at-point probing so overlapping, sticky, and negative-margin
+            // sections are detected according to their real visual stacking order.
+            const navRect = nav.getBoundingClientRect();
+            const probeY = navRect.top + navRect.height / 2;
+            const probeX = Math.max(16, isDesktop ? 40 : 16);
+
+            let probedEl = document.elementFromPoint(probeX, probeY);
+            if (!probedEl || probedEl === nav || nav.contains(probedEl)) {
+              const altX = (navRect.left - 24 > 0) ? (navRect.left - 24) : (navRect.right + 24);
+              probedEl = document.elementFromPoint(altX, probeY);
+            }
+
+            const lightSection = probedEl ? probedEl.closest('#statement, #experience, #contact') : null;
+            const isOverLight = !!lightSection;
+
+            if (isOverLight) {
+              nav.classList.add('is-on-light');
+              nav.classList.remove('is-on-dark');
+            } else {
+              nav.classList.add('is-on-dark');
+              nav.classList.remove('is-on-light');
+            }
+
+            // 2. HERO SCROLL HINT FADE OUT
+            const scrollHint = document.querySelector('.hero-scroll-hint');
+            if (scrollHint) {
+              if (scrollY > 8) {
+                scrollHint.classList.add('is-hidden');
+              } else {
+                scrollHint.classList.remove('is-hidden');
+              }
+            }
+
+            // 3. EXPERIENCE TIMELINE ACTIVE YEARS & MARKER ON MOBILE
+            if (!isDesktop) {
+              const expSection = document.getElementById('experience');
+              if (expSection) {
+                const expItems = Array.from(expSection.querySelectorAll('.experience-item'));
+                const midScreen = window.innerHeight * 0.5;
+                let closestIndex = -1;
+                let minDistance = Infinity;
+
+                expItems.forEach((item, idx) => {
+                  const rect = item.getBoundingClientRect();
+                  // Reveal item when entering viewport
+                  if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+                    item.classList.add('is-revealed');
+                  }
+                  const itemMid = rect.top + rect.height * 0.35;
+                  const dist = Math.abs(itemMid - midScreen);
+                  if (dist < minDistance) {
+                    minDistance = dist;
+                    closestIndex = idx;
+                  }
+                });
+
+                if (closestIndex !== -1) {
+                  expItems.forEach((item, idx) => {
+                    const yearEl = item.querySelector('.experience-year');
+                    const isActive = idx === closestIndex;
+                    item.classList.toggle('is-active', isActive);
+                    if (yearEl) {
+                      yearEl.classList.toggle('is-active', isActive);
+                    }
+                  });
+
+                  // Move progress marker on timeline
+                  const activeItem = expItems[closestIndex];
+                  const marker = expSection.querySelector('.experience-progress-marker');
+                  if (marker && activeItem) {
+                    const timelineEl = expSection.querySelector('.experience-timeline');
+                    const timelineRect = (timelineEl || expSection).getBoundingClientRect();
+                    const yearEl = activeItem.querySelector('.experience-year') || activeItem;
+                    const yearRect = yearEl.getBoundingClientRect();
+                    const markerTop = Math.max(12, yearRect.top - timelineRect.top + 10);
+                    timelineEl?.style.setProperty('--experience-marker-top', `${markerTop}px`);
+                  }
+                }
+              }
+            }
+
+            // 4. SCROLL SPY FOR NAVIGATION ITEMS
             if (scrollY < 120) {
               setActive('center');
               return;
             }
 
-            // If scrolled to the bottom of the page, activate Contact
             const scrollBottom = window.innerHeight + scrollY;
             const docHeight = document.documentElement.scrollHeight;
             if (docHeight > window.innerHeight + 300 && scrollBottom >= docHeight - 120) {
@@ -175,13 +260,26 @@
             });
           }
 
-          window.addEventListener('scroll', updateActiveOnScroll, { passive: true });
-          updateActiveOnScroll();
+          let ticking = false;
+          function requestTick() {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                updateNavState();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }
 
-          // Re-evaluate after React mounts elements
-          setTimeout(updateActiveOnScroll, 400);
-          setTimeout(updateActiveOnScroll, 1200);
-          setTimeout(updateActiveOnScroll, 2500);
+          window.addEventListener('scroll', requestTick, { passive: true });
+          window.addEventListener('resize', requestTick, { passive: true });
+          updateNavState();
+
+          // Re-evaluate after React mounts components
+          setTimeout(updateNavState, 200);
+          setTimeout(updateNavState, 600);
+          setTimeout(updateNavState, 1500);
+          setTimeout(updateNavState, 3000);
         }
 
         if (document.readyState === 'loading') {
