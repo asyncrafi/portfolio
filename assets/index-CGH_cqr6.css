@@ -423,8 +423,9 @@ html, body {
      ------------------------------------------------------------------------ */
   #projects {
     min-height: auto !important;
-    padding: 60px 0 80px !important;
+    padding: 0 0 80px 0 !important;
     background: #000000 !important;
+    position: relative !important;
   }
 
   .projects-shell {
@@ -436,32 +437,86 @@ html, body {
     min-height: auto !important;
     padding: 0 !important;
     position: static !important;
+    display: block !important;
   }
 
   .projects-stage {
     gap: 16px !important;
+    display: block !important;
+    position: relative !important;
   }
 
   .projects-header {
-    position: static !important;
-    padding: 0 0 20px 0 !important;
-    background: transparent !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+    background: #000000 !important;
+    background: rgba(0, 0, 0, 0.96) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
+    margin-inline: -18px !important;
+    padding-inline: 18px !important;
+    width: calc(100% + 36px) !important;
+    box-sizing: border-box !important;
+    padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.8) !important;
   }
 
   .projects-header:before {
-    display: none !important;
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    bottom: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 120px !important;
+    background: #000000 !important;
+    pointer-events: none !important;
   }
 
   .projects-header h2 {
-    font-size: clamp(2.4rem, 9vw, 3.8rem) !important;
+    font-size: clamp(2.2rem, 8vw, 3.2rem) !important;
     letter-spacing: -0.04em !important;
     line-height: 1 !important;
+    margin: 0 !important;
+    color: #f0efeb !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
   }
 
-  /* CRITICAL: Hide desktop pinned cursor/panel, scroll tracks, and giant 01/02/03 fixed overlay */
+  /* Synchronized Step Number on Mobile (01 / 02 / 03) */
+  .projects-header-number {
+    display: inline-flex !important;
+    width: auto !important;
+    font-size: clamp(2rem, 7.5vw, 2.8rem) !important;
+    line-height: 0.85 !important;
+    transform: none !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    color: #f0efeb !important;
+    flex-shrink: 0 !important;
+    font-family: var(--heading) !important;
+    font-weight: 900 !important;
+  }
+
+  .projects-header-number .project-tab-number-static {
+    color: #7aa2ff !important;
+  }
+
+  .projects-header-number .project-tab-number-digit-value {
+    color: #f0efeb !important;
+  }
+
+  /* CRITICAL: Hide desktop pinned cursor/panel, scroll tracks, and detached fixed overlay */
   .projects-panel,
   .projects-scroll-track,
-  .projects-header-number,
   .projects-mobile-number {
     display: none !important;
   }
@@ -712,6 +767,17 @@ html, body {
   .skills-list {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
+  }
+  .projects-header {
+    margin-inline: -12px !important;
+    padding-inline: 12px !important;
+    width: calc(100% + 24px) !important;
+  }
+  .projects-header h2 {
+    font-size: clamp(1.85rem, 7.5vw, 2.3rem) !important;
+  }
+  .projects-header-number {
+    font-size: clamp(1.65rem, 6.8vw, 2.1rem) !important;
   }
   .floating-bottom-nav {
     padding: 4px 6px !important;

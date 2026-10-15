@@ -188,6 +188,252 @@ html, body {
   bottom: 96px !important;
 }
 
+/* Hero Typography (Desktop) */
+.hero-title {
+  font-size: clamp(3rem, 7vw, 7.2rem) !important;
+  letter-spacing: 0.02em !important;
+  line-height: 0.96 !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
+
+.hero-subtitle-text {
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  color: #d4d4d8 !important;
+}
+
+.hero-nickname {
+  margin: 10px 0 0 0;
+  display: block;
+  text-align: center;
+}
+
+.hero-nickname-text {
+  font-family: var(--sans);
+  font-size: clamp(0.85rem, 1.2vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #71717a;
+  display: inline-block;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   LET'S TALK / CONTACT SECTION (Desktop Design)
+   ========================================================================== */
+#contact,
+.talk-section {
+  z-index: 1 !important;
+  background: #ffffff !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 60px 0 0 0 !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.talk-container {
+  width: min(1200px, calc(100% - 64px));
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: flex-end;
+  gap: clamp(40px, 6vw, 84px);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.talk-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(60px, 11vh, 100px);
+}
+
+.talk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.talk-eyebrow-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #18181b;
+  line-height: 1;
+}
+
+.talk-eyebrow-line {
+  display: inline-block;
+  width: 36px;
+  height: 1.5px;
+  background: #a1a1aa;
+  border-radius: 1px;
+}
+
+.talk-title {
+  font-family: "Anton", var(--heading), sans-serif;
+  font-size: clamp(4rem, 7.5vw, 6.2rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 24px 0;
+}
+
+.talk-desc {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+  color: #64748b;
+  max-width: 480px;
+  margin: 0 0 34px 0;
+}
+
+.talk-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+.talk-social-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1.5px solid #d4d4d8;
+  background: #ffffff;
+  color: #09090b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.talk-social-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: currentColor;
+  transition: transform 0.22s ease;
+}
+
+.talk-social-btn:hover {
+  background: #09090b;
+  border-color: #09090b;
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.18);
+}
+
+.talk-social-btn:hover svg {
+  transform: scale(1.05);
+}
+
+.talk-social-btn:active {
+  transform: translateY(-1px) scale(0.97);
+}
+
+.talk-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(64px, 12vh, 110px);
+}
+
+.talk-tagline-line {
+  display: inline-block;
+  width: 32px;
+  height: 1.5px;
+  background: #a1a1aa;
+  border-radius: 1px;
+}
+
+.talk-tagline-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #71717a;
+  line-height: 1;
+}
+
+/* Right Column: Portrait Photo with Arched Backdrop */
+.talk-right-col {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.talk-portrait-wrapper {
+  position: relative;
+  width: min(100%, 500px);
+  height: clamp(520px, 75vh, 660px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.talk-portrait-backdrop {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 260px 260px 0 0;
+  background: #ebebf0;
+  z-index: 1;
+}
+
+.talk-portrait-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 260px 260px 0 0;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.09);
+  background: #cfcdd4;
+}
+
+.talk-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.talk-portrait-frame:hover .talk-portrait-img {
+  transform: scale(1.04);
+}
+
 /* ==========================================================================
    MOBILE & TABLET BREAKPOINTS (<= 1024px)
    ========================================================================== */
@@ -228,11 +474,12 @@ html, body {
   }
 
   .hero-title {
-    font-size: clamp(2.4rem, 11vw, 4.4rem) !important;
-    line-height: 1 !important;
-    letter-spacing: -0.02em !important;
+    font-size: clamp(2rem, 8.5vw, 3.5rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.01em !important;
     white-space: normal !important;
     text-align: center !important;
+    text-wrap: balance !important;
     display: block !important;
     overflow: visible !important;
     margin: 0 !important;
@@ -259,13 +506,31 @@ html, body {
   }
 
   .hero-subtitle-text {
-    opacity: 0.85 !important;
+    opacity: 0.9 !important;
     transform: none !important;
     display: block !important;
     animation: none !important;
-    font-size: clamp(0.95rem, 3.8vw, 1.3rem) !important;
-    letter-spacing: 0.16em !important;
+    font-size: clamp(0.82rem, 3.4vw, 1.1rem) !important;
+    letter-spacing: 0.24em !important;
+    color: #a1a1aa !important;
+    text-transform: uppercase !important;
     margin: 0 !important;
+  }
+
+  .hero-nickname {
+    margin: 6px 0 0 0 !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .hero-nickname-text {
+    font-size: clamp(0.75rem, 2.8vw, 0.92rem) !important;
+    letter-spacing: 0.35em !important;
+    color: #71717a !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    opacity: 0.9 !important;
+    text-transform: uppercase !important;
   }
 
   .hero-scroll-hint {
@@ -433,12 +698,13 @@ html, body {
   }
 
   /* ------------------------------------------------------------------------
-     5. PROJECTS SECTION (#projects)
+     5. PROJECTS SECTION (#projects) — Sticky Header on Mobile
      ------------------------------------------------------------------------ */
   #projects {
     min-height: auto !important;
-    padding: 60px 0 80px !important;
+    padding: 0 0 80px 0 !important;
     background: #000000 !important;
+    position: relative !important;
   }
 
   .projects-shell {
@@ -450,32 +716,86 @@ html, body {
     min-height: auto !important;
     padding: 0 !important;
     position: static !important;
+    display: block !important;
   }
 
   .projects-stage {
     gap: 16px !important;
+    display: block !important;
+    position: relative !important;
   }
 
   .projects-header {
-    position: static !important;
-    padding: 0 0 20px 0 !important;
-    background: transparent !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+    background: #000000 !important;
+    background: rgba(0, 0, 0, 0.96) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
+    margin-inline: -18px !important;
+    padding-inline: 18px !important;
+    width: calc(100% + 36px) !important;
+    box-sizing: border-box !important;
+    padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.8) !important;
   }
 
   .projects-header:before {
-    display: none !important;
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    bottom: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 120px !important;
+    background: #000000 !important;
+    pointer-events: none !important;
   }
 
   .projects-header h2 {
-    font-size: clamp(2.4rem, 9vw, 3.8rem) !important;
+    font-size: clamp(2.2rem, 8vw, 3.2rem) !important;
     letter-spacing: -0.04em !important;
     line-height: 1 !important;
+    margin: 0 !important;
+    color: #f0efeb !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
   }
 
-  /* CRITICAL: Hide desktop pinned cursor/panel, scroll tracks, and giant 01/02/03 fixed overlay */
+  /* Synchronized Step Number on Mobile (01 / 02 / 03) */
+  .projects-header-number {
+    display: inline-flex !important;
+    width: auto !important;
+    font-size: clamp(2rem, 7.5vw, 2.8rem) !important;
+    line-height: 0.85 !important;
+    transform: none !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    color: #f0efeb !important;
+    flex-shrink: 0 !important;
+    font-family: var(--heading) !important;
+    font-weight: 900 !important;
+  }
+
+  .projects-header-number .project-tab-number-static {
+    color: #7aa2ff !important;
+  }
+
+  .projects-header-number .project-tab-number-digit-value {
+    color: #f0efeb !important;
+  }
+
+  /* CRITICAL: Hide desktop pinned cursor/panel, scroll tracks, and detached fixed overlay */
   .projects-panel,
   .projects-scroll-track,
-  .projects-header-number,
   .projects-mobile-number {
     display: none !important;
   }
@@ -581,120 +901,117 @@ html, body {
   }
 
   /* ------------------------------------------------------------------------
-     6. CONTACT SECTION (#contact)
+     6. LET'S TALK SECTION (#contact) — Mobile View
      ------------------------------------------------------------------------ */
-  #contact {
+  #contact,
+  .talk-section {
     min-height: auto !important;
     height: auto !important;
-    padding: 70px 0 140px !important; /* Generous clearance for floating dock */
+    padding: 36px 0 110px 0 !important; /* Generous clearance for mobile floating dock */
     position: relative !important;
     background: #ffffff !important;
-  }
-
-  #contact .section-shell {
-    width: calc(100% - 36px) !important;
-    max-width: 100% !important;
-    min-height: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    transform: none !important;
-  }
-
-  .contact-layout {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    width: 100% !important;
-  }
-
-  /* Elegant Circular Avatar centered above Let's Talk */
-  .contact-media {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 110px !important;
-    height: 110px !important;
-    margin: 0 auto 16px auto !important;
-    border-radius: 50% !important;
-    overflow: hidden !important;
-    border: 3px solid #08060d !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
-    order: 1 !important;
-  }
-
-  .contact-media-image {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center 20% !important;
-    transform: scale(1.12) !important;
     display: block !important;
   }
 
-  .contact-content {
-    order: 2 !important;
+  .talk-container {
+    grid-template-columns: 1fr !important;
+    width: calc(100% - 36px) !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    gap: 24px !important;
+    text-align: left !important;
+    padding: 0 !important;
+  }
+
+  .talk-left-col {
     width: 100% !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
 
-  #contact h2 {
-    font-size: clamp(2.2rem, 8vw, 3.2rem) !important;
-    text-align: center !important;
-    margin-bottom: 24px !important;
-    line-height: 1.05 !important;
+  .talk-eyebrow {
+    margin-bottom: 8px !important;
+    gap: 12px !important;
   }
 
-  .contact-form {
-    width: 100% !important;
-    gap: 18px !important;
+  .talk-eyebrow-text {
+    font-size: 13px !important;
+    letter-spacing: 0.16em !important;
   }
 
-  .contact-field input,
-  .contact-field textarea {
-    font-size: 16px !important; /* CRITICAL: Prevents iOS Safari auto-zooming */
-    padding: 12px 6px !important;
-    line-height: 1.4 !important;
+  .talk-eyebrow-line {
+    width: 32px !important;
   }
 
-  .contact-submit-row {
-    margin-top: 12px !important;
-    justify-items: center !important;
+  .talk-title {
+    font-size: clamp(3rem, 14vw, 4.4rem) !important;
+    margin: 0 0 16px 0 !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.02em !important;
   }
 
-  .contact-submit {
-    min-width: 160px !important;
-    padding: 13px 30px !important;
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
-    border-radius: 9999px !important;
-    cursor: pointer !important;
+  .talk-desc {
+    font-size: 1.02rem !important;
+    line-height: 1.55 !important;
+    color: #52525b !important;
+    margin: 0 0 24px 0 !important;
+    max-width: 100% !important;
   }
 
-  .contact-side-actions {
-    order: 3 !important;
+  .talk-socials {
     display: flex !important;
     flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 16px !important;
-    margin-top: 28px !important;
+    gap: 14px !important;
+    margin: 0 !important;
     width: 100% !important;
+    justify-content: flex-start !important;
   }
 
-  .contact-side-button {
-    width: 52px !important;
-    height: 52px !important;
+  .talk-social-btn {
+    width: 50px !important;
+    height: 50px !important;
     border-radius: 50% !important;
+    border: 1.5px solid #d4d4d8 !important;
   }
 
-  .site-footer {
-    position: relative !important;
-    margin-top: 48px !important;
-    bottom: auto !important;
-    padding: 0 20px 32px !important;
-    text-align: center !important;
+  .talk-social-btn svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 
-  .site-footer p {
-    font-size: 0.85rem !important;
+  /* Tagline hidden on mobile to match Mobile Mockup cleanly */
+  .talk-tagline {
+    display: none !important;
+  }
+
+  /* Right column: Portrait centered below social icons on mobile */
+  .talk-right-col {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    margin-top: 8px !important;
+  }
+
+  .talk-portrait-wrapper {
+    width: min(90%, 320px) !important;
+    height: 330px !important;
+    margin: 0 auto !important;
+  }
+
+  .talk-portrait-backdrop {
+    border-radius: 170px 170px 0 0 !important;
+    background: #ebebf0 !important;
+  }
+
+  .talk-portrait-frame {
+    border-radius: 170px 170px 0 0 !important;
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1) !important;
+    height: 100% !important;
+  }
+
+  .talk-portrait-img {
+    object-position: center 12% !important;
   }
 
   /* ------------------------------------------------------------------------
@@ -726,6 +1043,17 @@ html, body {
   .skills-list {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
+  }
+  .projects-header {
+    margin-inline: -12px !important;
+    padding-inline: 12px !important;
+    width: calc(100% + 24px) !important;
+  }
+  .projects-header h2 {
+    font-size: clamp(1.85rem, 7.5vw, 2.3rem) !important;
+  }
+  .projects-header-number {
+    font-size: clamp(1.65rem, 6.8vw, 2.1rem) !important;
   }
   .floating-bottom-nav {
     padding: 4px 6px !important;
