@@ -208,6 +208,7 @@
 
   .side-rail-item.is-active {
     opacity: 1;
+    transform: scale(1.12);
   }
 
   .side-rail-icon svg {
@@ -243,23 +244,9 @@
     transform: translateY(-50%) translateX(0);
   }
 
-  /* Active Indicator: Clean rounded vertical bar on the left */
+  /* Active Indicator: Line mark removed as requested */
   .side-rail-indicator {
-    position: absolute;
-    left: -14px;
-    top: 50%;
-    transform: translateY(-50%) scaleY(0);
-    width: 3.5px;
-    height: 22px;
-    border-radius: 99px;
-    background: currentColor;
-    opacity: 0;
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
-  }
-
-  .side-rail-item.is-active .side-rail-indicator {
-    transform: translateY(-50%) scaleY(1);
-    opacity: 1;
+    display: none !important;
   }
 
   /* 3. Bottom Rotated Scroll Prompt (Bidirectional Down/Up) */
@@ -361,13 +348,10 @@
   }
 
   .desktop-side-rail.is-on-dark .side-rail-item:hover,
-  .desktop-side-rail:not(.is-on-light) .side-rail-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .desktop-side-rail.is-on-dark .side-rail-indicator,
-  .desktop-side-rail:not(.is-on-light) .side-rail-indicator {
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  .desktop-side-rail:not(.is-on-light) .side-rail-item:hover,
+  .desktop-side-rail.is-on-dark .side-rail-item.is-active,
+  .desktop-side-rail:not(.is-on-light) .side-rail-item.is-active {
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .desktop-side-rail.is-on-dark .side-rail-tooltip,
@@ -388,12 +372,9 @@
     filter: brightness(0);
   }
 
-  .desktop-side-rail.is-on-light .side-rail-item:hover {
-    background: rgba(8, 6, 13, 0.06);
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-indicator {
-    box-shadow: none;
+  .desktop-side-rail.is-on-light .side-rail-item:hover,
+  .desktop-side-rail.is-on-light .side-rail-item.is-active {
+    background: rgba(8, 6, 13, 0.08);
   }
 
   .desktop-side-rail.is-on-light .side-rail-tooltip {
@@ -423,11 +404,10 @@
   }
 
   .floating-nav-item {
-    min-width: 52px !important;
-    min-height: 44px !important;
-    padding: 6px 11px !important;
+    min-width: 46px !important;
+    min-height: 40px !important;
+    padding: 8px 12px !important;
     border-radius: 9999px !important;
-    gap: 2px !important;
   }
 }
 
@@ -463,12 +443,8 @@
 .floating-bottom-nav.is-on-dark .floating-nav-item.is-active,
 .floating-bottom-nav:not(.is-on-light) .floating-nav-item.is-active {
   color: #ffffff;
-}
-
-.floating-bottom-nav.is-on-dark .floating-nav-indicator,
-.floating-bottom-nav:not(.is-on-light) .floating-nav-indicator {
-  background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.05);
 }
 
 .floating-bottom-nav.is-on-dark .floating-nav-divider,
@@ -503,11 +479,8 @@
 
 .floating-bottom-nav.is-on-light .floating-nav-item.is-active {
   color: #08060d;
-}
-
-.floating-bottom-nav.is-on-light .floating-nav-indicator {
-  background: #08060d;
-  box-shadow: none;
+  background: rgba(8, 6, 13, 0.09);
+  transform: scale(1.05);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-divider {
@@ -516,7 +489,6 @@
 
 .floating-nav-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -537,21 +509,9 @@
   transform: scale(1.08);
 }
 
+/* Active Indicator: Line mark removed as requested */
 .floating-nav-indicator {
-  display: block;
-  width: 20px;
-  height: 3px;
-  border-radius: 99px;
-  margin-top: 4px;
-  transform: scaleX(0);
-  opacity: 0;
-  transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease, background 0.22s ease;
-}
-
-.floating-nav-item.is-active .floating-nav-indicator {
-  transform: scaleX(1);
-  opacity: 1;
+  display: none !important;
 }
 
 .floating-nav-divider {
