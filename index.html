@@ -49,8 +49,8 @@
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
     <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=11"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=17">
-    <link rel="stylesheet" href="./styles.css?v=17">
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=18">
+    <link rel="stylesheet" href="./styles.css?v=18">
   </head>
   <body>
     <div id="root"></div>
@@ -64,7 +64,7 @@
             <img src="./assets/Minimalist Compass Circle Icon.png" class="compass-circle" alt="" />
             <img src="./assets/Minimalist White Compass Needle.png" class="compass-needle" alt="" />
           </div>
-          <span class="side-rail-tooltip">Flick to spin</span>
+          <span class="side-rail-tooltip" style="display: none;">Back to top</span>
         </a>
 
         <!-- Vertical Stem Line -->
@@ -233,27 +233,20 @@
               e.preventDefault();
               const scrollY = window.scrollY || window.pageYOffset || 0;
 
-              if (scrollY > 80) {
+              if (scrollY > 120) {
                 // When scrolled down: smoothly glide back up to top
                 smoothScrollSlow(0, 1600);
                 setActive('center');
               } else {
-                // When already at the top: trigger playful 720deg spin flick burst!
+                // When already at the top: trigger playful 720deg spin flick burst silently (no text)
                 if (!isBursting && compassNeedle) {
                   isBursting = true;
                   compassNeedle.classList.remove('is-burst');
                   void compassNeedle.offsetWidth;
                   compassNeedle.classList.add('is-burst');
-                  if (compassTooltip) {
-                    compassTooltip.textContent = 'Spinning!';
-                  }
                   setTimeout(() => {
                     compassNeedle.classList.remove('is-burst');
                     isBursting = false;
-                    if (compassTooltip) {
-                      const curY = window.scrollY || window.pageYOffset || 0;
-                      compassTooltip.textContent = curY > 80 ? 'Back to top' : 'Flick to spin';
-                    }
                   }, 1200);
                 }
               }
@@ -334,11 +327,13 @@
                 desktopRail.classList.remove('is-on-light');
               }
 
-              // Dynamic Compass Tooltip (Back to top vs Flick to spin)
-              if (compassTooltip && !isBursting) {
-                const targetText = scrollY > 80 ? 'Back to top' : 'Flick to spin';
-                if (compassTooltip.textContent !== targetText) {
-                  compassTooltip.textContent = targetText;
+              // Dynamic Compass Tooltip (Hidden at top, "Back to top" when scrolled down)
+              if (compassTooltip) {
+                if (scrollY > 120) {
+                  compassTooltip.style.display = '';
+                  compassTooltip.textContent = 'Back to top';
+                } else {
+                  compassTooltip.style.display = 'none';
                 }
               }
 

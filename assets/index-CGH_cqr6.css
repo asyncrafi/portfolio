@@ -208,20 +208,20 @@
     cursor: pointer;
     border-radius: 50%;
     color: currentColor;
-    opacity: 0.7;
+    opacity: 0.55;
     transition: opacity 0.22s ease,
-                background 0.22s ease,
+                color 0.22s ease,
                 transform 0.22s ease;
   }
 
   .side-rail-item:hover {
     opacity: 1;
-    transform: scale(1.12);
+    transform: scale(1.15);
   }
 
   .side-rail-item.is-active {
     opacity: 1;
-    transform: scale(1.12);
+    transform: scale(1.15);
   }
 
   .side-rail-icon svg {
@@ -360,13 +360,6 @@
     filter: brightness(0) invert(1);
   }
 
-  .desktop-side-rail.is-on-dark .side-rail-item:hover,
-  .desktop-side-rail:not(.is-on-light) .side-rail-item:hover,
-  .desktop-side-rail.is-on-dark .side-rail-item.is-active,
-  .desktop-side-rail:not(.is-on-light) .side-rail-item.is-active {
-    background: rgba(255, 255, 255, 0.12);
-  }
-
   .desktop-side-rail.is-on-dark .side-rail-tooltip,
   .desktop-side-rail:not(.is-on-light) .side-rail-tooltip {
     background: rgba(18, 18, 22, 0.9);
@@ -383,11 +376,6 @@
   .desktop-side-rail.is-on-light .side-rail-flower-img,
   .desktop-side-rail.is-on-light .side-rail-compass {
     filter: brightness(0);
-  }
-
-  .desktop-side-rail.is-on-light .side-rail-item:hover,
-  .desktop-side-rail.is-on-light .side-rail-item.is-active {
-    background: rgba(8, 6, 13, 0.08);
   }
 
   .desktop-side-rail.is-on-light .side-rail-tooltip {
@@ -449,15 +437,13 @@
 .floating-bottom-nav.is-on-dark .floating-nav-item:hover,
 .floating-bottom-nav:not(.is-on-light) .floating-nav-item:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  transform: scale(1.12);
 }
 
 .floating-bottom-nav.is-on-dark .floating-nav-item.is-active,
 .floating-bottom-nav:not(.is-on-light) .floating-nav-item.is-active {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.16);
-  transform: scale(1.05);
+  transform: scale(1.14);
 }
 
 .floating-bottom-nav.is-on-dark .floating-nav-divider,
@@ -486,14 +472,12 @@
 
 .floating-bottom-nav.is-on-light .floating-nav-item:hover {
   color: #08060d;
-  background: rgba(8, 6, 13, 0.06);
-  transform: translateY(-1px);
+  transform: scale(1.12);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-item.is-active {
   color: #08060d;
-  background: rgba(8, 6, 13, 0.09);
-  transform: scale(1.05);
+  transform: scale(1.14);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-divider {
