@@ -169,12 +169,25 @@ html.lenis, html.lenis body { height: auto; }
     animation-duration: 3s;
   }
 
+  .side-rail-compass .compass-needle.is-burst {
+    animation: compassNeedleBurst 1.2s cubic-bezier(0.12, 0.8, 0.22, 1) !important;
+  }
+
   @keyframes compassNeedleSpin {
     from {
       transform: rotate(0deg) scale(0.84);
     }
     to {
       transform: rotate(360deg) scale(0.84);
+    }
+  }
+
+  @keyframes compassNeedleBurst {
+    from {
+      transform: rotate(0deg) scale(0.84);
+    }
+    to {
+      transform: rotate(720deg) scale(0.84);
     }
   }
 
