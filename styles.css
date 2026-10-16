@@ -159,6 +159,7 @@ html.lenis, html.lenis body { height: auto; }
     pointer-events: none;
     user-select: none;
     transform-origin: 49.96% 49.08%;
+    transform: rotate(0deg) scale(0.84);
     animation: compassNeedleSpin 14s linear infinite;
     will-change: transform;
     transition: filter 0.28s ease;
@@ -170,10 +171,10 @@ html.lenis, html.lenis body { height: auto; }
 
   @keyframes compassNeedleSpin {
     from {
-      transform: rotate(0deg);
+      transform: rotate(0deg) scale(0.84);
     }
     to {
-      transform: rotate(360deg);
+      transform: rotate(360deg) scale(0.84);
     }
   }
 
