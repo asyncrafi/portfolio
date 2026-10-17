@@ -242,8 +242,7 @@
     box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.2);
   }
 
-  .side-rail-item:hover .side-rail-tooltip,
-  .side-rail-flower-link:hover .side-rail-tooltip {
+  .side-rail-item:hover .side-rail-tooltip {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
   }
