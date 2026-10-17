@@ -795,39 +795,80 @@ html, body {
   border: none;
   border-radius: 9999px;
   padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--sans);
   font-size: 14.5px;
   font-weight: 600;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease, padding 0.2s ease;
 }
 
-.connect-submit-btn:hover {
+.connect-submit-btn:hover:not(:disabled) {
   background: #18181b;
   transform: translateY(-2px);
-  box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
 }
 
-.connect-submit-btn:active {
+.connect-submit-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.connect-submit-btn:disabled {
+  cursor: default;
+  opacity: 0.98;
 }
 
 .connect-btn-arrow {
   transition: transform 0.2s ease;
+  display: inline-block;
 }
 
-.connect-submit-btn:hover .connect-btn-arrow {
+.connect-submit-btn:hover:not(:disabled) .connect-btn-arrow {
   transform: translateX(3px);
 }
 
+/* Spinner during sending */
+.connect-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: connect-btn-spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes connect-btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Checkmark icon animation */
+.connect-btn-check {
+  display: inline-block;
+  animation: connect-check-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+@keyframes connect-check-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes connect-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* External status message is completely hidden to keep sleek monochrome UI */
 .connect-status-msg {
-  font-family: var(--sans);
-  font-size: 13.5px;
-  line-height: 1.4;
+  display: none !important;
 }
 
 /* Right Side Profile Column (Desktop) */

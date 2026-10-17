@@ -51,7 +51,7 @@
     <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=20"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=26">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./styles.css?v=27">
+    <link rel="stylesheet" href="./styles.css?v=28">
   </head>
   <body>
     <div id="root"></div>
@@ -495,49 +495,43 @@
           setTimeout(updateNavState, 3000);
         }
 
-        // Contact Message Form Submit Handler
+        // Contact Message Form Submit Handler (In-Button State Morphing)
         document.addEventListener('submit', function (e) {
           const form = e.target.closest('#contact-connect-form');
           if (!form) return;
           e.preventDefault();
 
           const submitBtn = form.querySelector('#connect-submit-btn');
-          const btnText = submitBtn ? submitBtn.querySelector('.connect-btn-text') : null;
-          const statusMsg = form.querySelector('#connect-status');
           const nameInput = form.querySelector('#connect-name');
           const emailInput = form.querySelector('#connect-email');
           const msgInput = form.querySelector('#connect-message');
 
           if (!nameInput?.value.trim() || !emailInput?.value.trim() || !msgInput?.value.trim()) {
-            if (statusMsg) {
-              statusMsg.style.display = 'block';
-              statusMsg.style.color = '#dc2626';
-              statusMsg.textContent = 'Please fill out all required fields.';
+            if (submitBtn) {
+              submitBtn.style.animation = 'connect-shake 0.4s ease';
+              setTimeout(() => { submitBtn.style.animation = ''; }, 450);
             }
             return;
           }
 
-          if (submitBtn) submitBtn.disabled = true;
-          if (btnText) btnText.textContent = 'Sending...';
-          if (statusMsg) {
-            statusMsg.style.display = 'block';
-            statusMsg.style.color = '#71717a';
-            statusMsg.textContent = 'Sending message...';
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="connect-btn-spinner" aria-hidden="true"></span><span class="connect-btn-text">Sending...</span>';
           }
 
           setTimeout(() => {
-            if (statusMsg) {
-              statusMsg.style.color = '#16a34a';
-              statusMsg.textContent = 'Thank you! Your message has been sent successfully.';
+            if (submitBtn) {
+              submitBtn.innerHTML = '<svg class="connect-btn-check" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.8 14.2l-3.9-3.9 1.41-1.41 2.49 2.49 5.89-5.89 1.41 1.41-7.3 7.3z"/></svg><span class="connect-btn-text">Message Sent</span>';
             }
-            if (btnText) btnText.textContent = 'Sent ✓';
             form.reset();
 
             setTimeout(() => {
-              if (submitBtn) submitBtn.disabled = false;
-              if (btnText) btnText.textContent = 'Send Message';
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span class="connect-btn-text">Send Message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="connect-btn-arrow"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+              }
             }, 4000);
-          }, 800);
+          }, 700);
         });
 
         // Download CV Click Handler
