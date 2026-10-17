@@ -962,8 +962,13 @@ html, body {
               box-shadow 0.22s ease;
 }
 
+.connect-social-icon-btn i,
 .connect-social-icon-btn svg {
-  display: block;
+  font-size: 22px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -975,8 +980,9 @@ html, body {
   box-shadow: 0 8px 20px rgba(9, 9, 11, 0.22);
 }
 
+.connect-social-icon-btn:hover i,
 .connect-social-icon-btn:hover svg {
-  transform: scale(1.12);
+  transform: scale(1.1);
 }
 
 /* Bottom Divider */
