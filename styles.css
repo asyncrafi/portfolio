@@ -627,7 +627,7 @@ html, body {
   min-height: 100svh !important;
   height: auto !important;
   margin: 0 !important;
-  padding: 100px 0 120px 0 !important;
+  padding: 80px 0 60px 0 !important;
   position: relative !important;
   display: flex !important;
   align-items: center !important;
@@ -637,13 +637,13 @@ html, body {
 }
 
 .connect-container {
-  width: min(1200px, calc(100% - 64px));
-  max-width: 1200px;
+  width: min(1160px, calc(100% - 64px));
+  max-width: 1160px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
-  align-items: flex-start;
-  gap: clamp(48px, 6vw, 84px);
+  align-items: center;
+  gap: clamp(40px, 5vw, 80px);
   position: relative;
   box-sizing: border-box;
 }
@@ -676,14 +676,14 @@ html, body {
 .connect-eyebrow-line {
   display: inline-block;
   width: 32px;
-  height: 2px;
+  height: 1.5px;
   background: #09090b;
   border-radius: 1px;
 }
 
 .connect-title {
   font-family: var(--heading), -apple-system, sans-serif;
-  font-size: clamp(3.2rem, 5.5vw, 4.4rem);
+  font-size: clamp(3.2rem, 5.5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.035em;
@@ -693,107 +693,25 @@ html, body {
 
 .connect-desc {
   font-family: var(--sans);
-  font-size: clamp(1.05rem, 1.25vw, 1.15rem);
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
   line-height: 1.55;
   color: #52525b;
-  max-width: 540px;
+  max-width: 520px;
   margin: 0 0 32px 0;
 }
 
-.connect-channels {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 34px;
+/* Mobile Profile block hidden on desktop */
+.connect-profile-mobile {
+  display: none;
 }
 
-.connect-channel-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  text-decoration: none;
-  color: #09090b;
-  padding: 4px 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.connect-channel-card:hover {
-  transform: translateY(-2px);
-}
-
-.connect-channel-icon {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #09090b;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.connect-channel-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  overflow: hidden;
-}
-
-.connect-channel-label {
-  font-family: var(--sans);
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #09090b;
-  letter-spacing: -0.01em;
-}
-
-.connect-channel-val {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: #71717a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.18s ease;
-}
-
-.connect-channel-card:hover .connect-channel-val {
-  color: #09090b;
-}
-
-.connect-form-card {
-  width: 100%;
-  background: #fbfbfb;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  padding: clamp(24px, 3.5vw, 36px);
-  box-sizing: border-box;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
-}
-
-.connect-form-heading {
-  font-family: var(--sans);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #09090b;
-  margin: 0 0 6px 0;
-}
-
-.connect-form-subheading {
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.5;
-  color: #71717a;
-  margin: 0 0 24px 0;
-}
-
+/* Form directly on white canvas (No heavy card wrapper) */
 .connect-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  max-width: 560px;
 }
 
 .connect-form-row {
@@ -851,7 +769,7 @@ html, body {
 
 .connect-select-arrow {
   position: absolute;
-  right: 14px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -860,14 +778,14 @@ html, body {
 
 .connect-textarea {
   resize: vertical;
-  min-height: 110px;
+  min-height: 125px;
 }
 
 .connect-submit-row {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 8px;
+  margin-top: 6px;
   flex-wrap: wrap;
 }
 
@@ -876,7 +794,7 @@ html, body {
   color: #ffffff;
   border: none;
   border-radius: 9999px;
-  padding: 13px 26px;
+  padding: 13px 28px;
   font-family: var(--sans);
   font-size: 14.5px;
   font-weight: 600;
@@ -912,14 +830,14 @@ html, body {
   line-height: 1.4;
 }
 
+/* Right Side Profile Column (Desktop) */
 .connect-side-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   position: relative;
-  padding-top: 24px;
 }
 
 .connect-side-sticky {
@@ -927,17 +845,37 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.connect-avatar-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.connect-avatar-halo {
+  position: absolute;
+  width: clamp(260px, 24vw, 330px);
+  height: clamp(260px, 24vw, 330px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #f0f0f3 0%, #f7f7f9 68%, transparent 72%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .connect-avatar-circle {
-  width: clamp(220px, 20vw, 280px);
-  height: clamp(220px, 20vw, 280px);
+  position: relative;
+  z-index: 1;
+  width: clamp(200px, 18vw, 250px);
+  height: clamp(200px, 18vw, 250px);
   border-radius: 50%;
   border: 4px solid #ffffff;
   background: #f4f4f5;
-  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.12), 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
 }
 
 .connect-avatar-img {
@@ -948,32 +886,108 @@ html, body {
   display: block;
 }
 
-.connect-badge-doodle {
-  display: flex;
+.connect-profile-email {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
-  color: #52525b;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #18181b;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 0.18s ease;
 }
 
-.connect-arrow-svg {
+.connect-profile-email:hover {
+  color: #09090b;
+  text-decoration: underline;
+}
+
+.connect-email-icon {
+  color: #18181b;
   flex-shrink: 0;
-  color: #71717a;
 }
 
-.connect-doodle-text {
-  font-family: 'Caveat', cursive, var(--sans);
-  font-size: 19px;
+.connect-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #09090b;
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.15;
-  color: #52525b;
-  text-align: left;
-  transform: rotate(-3deg);
-  display: inline-block;
+  text-decoration: none;
+  padding: 13px 32px;
+  border-radius: 9999px;
+  margin-bottom: 22px;
+  width: min(100%, 240px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.connect-portrait-mobile {
-  display: none;
+.connect-cv-btn:hover {
+  background: #18181b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+}
+
+.connect-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.connect-social-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #e4e4e7;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #18181b;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.connect-social-icon-btn:hover {
+  border-color: #09090b;
+  background: #09090b;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Bottom Divider */
+.connect-footer-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.connect-divider-line {
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: #e4e4e7;
+}
+
+.connect-divider-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -1586,7 +1600,7 @@ html, body {
   .connect-section {
     min-height: auto !important;
     height: auto !important;
-    padding: 44px 0 116px 0 !important; /* Generous clearance for mobile floating dock */
+    padding: 36px 0 110px 0 !important; /* Generous clearance for mobile floating dock */
     position: relative !important;
     background: #ffffff !important;
     display: block !important;
@@ -1595,9 +1609,9 @@ html, body {
   .connect-container {
     grid-template-columns: 1fr !important;
     width: calc(100% - 36px) !important;
-    max-width: 520px !important;
+    max-width: 480px !important;
     margin: 0 auto !important;
-    gap: 28px !important;
+    gap: 24px !important;
     text-align: left !important;
     padding: 0 !important;
   }
@@ -1633,80 +1647,59 @@ html, body {
     font-size: 1.02rem !important;
     line-height: 1.55 !important;
     color: #52525b !important;
-    margin: 0 0 20px 0 !important;
+    margin: 0 0 28px 0 !important;
     max-width: 100% !important;
   }
 
-  /* Mobile Portrait with handwritten doodle */
-  .connect-portrait-mobile {
+  /* Mobile Profile Block: Avatar + Email + Download CV + Social Icons */
+  .connect-profile-mobile {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 4px 0 28px 0 !important;
+    margin: 0 0 34px 0 !important;
     width: 100% !important;
   }
 
-  .connect-portrait-mobile .connect-avatar-circle {
-    width: 160px !important;
-    height: 160px !important;
+  .connect-profile-mobile .connect-avatar-wrap {
+    margin-bottom: 18px !important;
   }
 
-  .connect-portrait-mobile .connect-badge-doodle {
-    margin-top: 12px !important;
-    gap: 8px !important;
+  .connect-profile-mobile .connect-avatar-circle {
+    width: 170px !important;
+    height: 170px !important;
   }
 
-  .connect-portrait-mobile .connect-doodle-text {
-    font-size: 18px !important;
+  .connect-profile-mobile .connect-avatar-halo {
+    width: 220px !important;
+    height: 220px !important;
   }
 
-  /* Side column hidden on mobile (avatar is shown in .connect-portrait-mobile) */
+  .connect-profile-mobile .connect-profile-email {
+    margin-bottom: 16px !important;
+    font-size: 14.5px !important;
+  }
+
+  .connect-profile-mobile .connect-cv-btn {
+    width: min(100%, 260px) !important;
+    margin-bottom: 20px !important;
+    padding: 13px 28px !important;
+  }
+
+  .connect-profile-mobile .connect-social-row {
+    gap: 14px !important;
+  }
+
+  /* Desktop side column hidden on mobile */
   .connect-side-col {
     display: none !important;
   }
 
-  /* 3 direct contact channels stacked nicely on mobile */
-  .connect-channels {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    margin-bottom: 26px !important;
+  /* Clean Input Form on Mobile */
+  .connect-form {
     width: 100% !important;
-  }
-
-  .connect-channel-card {
-    background: #fbfbfb !important;
-    border: 1px solid rgba(0, 0, 0, 0.06) !important;
-    border-radius: 12px !important;
-    padding: 12px 14px !important;
-  }
-
-  .connect-channel-icon {
-    width: 28px !important;
-    height: 28px !important;
-  }
-
-  .connect-channel-label {
-    font-size: 13px !important;
-  }
-
-  .connect-channel-val {
-    font-size: 12.5px !important;
-  }
-
-  /* Contact message form card on mobile */
-  .connect-form-card {
-    padding: 22px 18px !important;
-    border-radius: 16px !important;
-  }
-
-  .connect-form-heading {
-    font-size: 18.5px !important;
-  }
-
-  .connect-form-subheading {
-    font-size: 13.5px !important;
-    margin-bottom: 18px !important;
+    max-width: 100% !important;
+    gap: 14px !important;
   }
 
   .connect-form-row {
@@ -1719,6 +1712,7 @@ html, body {
     align-items: stretch !important;
     width: 100% !important;
     gap: 12px !important;
+    margin-top: 4px !important;
   }
 
   .connect-submit-btn {
@@ -1729,6 +1723,20 @@ html, body {
 
   .connect-status-msg {
     text-align: center !important;
+  }
+
+  .connect-footer-divider {
+    margin-top: 36px !important;
+    gap: 12px !important;
+  }
+
+  .connect-divider-line {
+    max-width: 50px !important;
+  }
+
+  .connect-divider-text {
+    font-size: 10px !important;
+    letter-spacing: 0.16em !important;
   }
 
   /* ------------------------------------------------------------------------
