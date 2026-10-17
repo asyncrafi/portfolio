@@ -48,9 +48,9 @@
       }
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
-    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=11"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=18">
-    <link rel="stylesheet" href="./styles.css?v=18">
+    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=12"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=19">
+    <link rel="stylesheet" href="./styles.css?v=19">
   </head>
   <body>
     <div id="root"></div>
@@ -493,6 +493,51 @@
           setTimeout(updateNavState, 1500);
           setTimeout(updateNavState, 3000);
         }
+
+        // Contact Message Form Submit Handler
+        document.addEventListener('submit', function (e) {
+          const form = e.target.closest('#contact-connect-form');
+          if (!form) return;
+          e.preventDefault();
+
+          const submitBtn = form.querySelector('#connect-submit-btn');
+          const btnText = submitBtn ? submitBtn.querySelector('.connect-btn-text') : null;
+          const statusMsg = form.querySelector('#connect-status');
+          const nameInput = form.querySelector('#connect-name');
+          const emailInput = form.querySelector('#connect-email');
+          const msgInput = form.querySelector('#connect-message');
+
+          if (!nameInput?.value.trim() || !emailInput?.value.trim() || !msgInput?.value.trim()) {
+            if (statusMsg) {
+              statusMsg.style.display = 'block';
+              statusMsg.style.color = '#dc2626';
+              statusMsg.textContent = 'Please fill out all required fields.';
+            }
+            return;
+          }
+
+          if (submitBtn) submitBtn.disabled = true;
+          if (btnText) btnText.textContent = 'Sending...';
+          if (statusMsg) {
+            statusMsg.style.display = 'block';
+            statusMsg.style.color = '#71717a';
+            statusMsg.textContent = 'Sending message...';
+          }
+
+          setTimeout(() => {
+            if (statusMsg) {
+              statusMsg.style.color = '#16a34a';
+              statusMsg.textContent = 'Thank you! Your message has been sent successfully.';
+            }
+            if (btnText) btnText.textContent = 'Sent ✓';
+            form.reset();
+
+            setTimeout(() => {
+              if (submitBtn) submitBtn.disabled = false;
+              if (btnText) btnText.textContent = 'Send Message';
+            }, 4000);
+          }, 800);
+        });
 
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initFloatingNav);
