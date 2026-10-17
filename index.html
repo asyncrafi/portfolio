@@ -49,9 +49,9 @@
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
     <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=21"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=27">
+    <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=28">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./styles.css?v=31">
+    <link rel="stylesheet" href="./styles.css?v=32">
   </head>
   <body>
     <div id="root"></div>
@@ -330,6 +330,20 @@
           function updateNavState() {
             const scrollY = window.scrollY || window.pageYOffset || 0;
             const isDesktop = window.innerWidth > 1024;
+            const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            const scrollProgress = Math.min(1, Math.max(0, scrollY / maxScroll));
+
+            // Dynamic Compass Progress Indicator (Rotates needle from 0deg to 360deg based on scroll)
+            const compassAngle = (scrollProgress * 360).toFixed(1);
+            document.documentElement.style.setProperty('--compass-angle', `${compassAngle}deg`);
+
+            const progressPct = Math.round(scrollProgress * 100);
+            if (brandBtn) {
+              brandBtn.setAttribute('aria-label', `Compass: ${progressPct}% scrolled - Back to top`);
+            }
+            if (mobileCompassBtn) {
+              mobileCompassBtn.setAttribute('aria-label', `Compass: ${progressPct}% scrolled - Back to top`);
+            }
 
             if (isDesktop && desktopRail) {
               // Desktop Contrast Detection: Probe directly under the center of the side rail
@@ -346,11 +360,11 @@
                 desktopRail.classList.remove('is-on-light');
               }
 
-              // Dynamic Compass Tooltip (Hidden at top, "Back to top" when scrolled down)
+              // Dynamic Compass Tooltip (Hidden at top, "Back to top (pct%)" when scrolled down)
               if (compassTooltip) {
                 if (scrollY > 120) {
                   compassTooltip.style.display = '';
-                  compassTooltip.textContent = 'Back to top';
+                  compassTooltip.textContent = `Back to top (${progressPct}%)`;
                 } else {
                   compassTooltip.style.display = 'none';
                 }
