@@ -940,12 +940,12 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .connect-social-icon-btn {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1.5px solid #e4e4e7;
   background: #ffffff;
@@ -954,14 +954,54 @@ html, body {
   justify-content: center;
   color: #18181b;
   text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.22s ease,
+              border-color 0.22s ease,
+              color 0.22s ease,
+              box-shadow 0.22s ease;
+}
+
+.connect-social-icon-btn svg {
+  display: block;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .connect-social-icon-btn:hover {
-  border-color: #09090b;
+  transform: translateY(-3px);
+}
+
+.connect-social-icon-btn:hover svg {
+  transform: scale(1.12);
+}
+
+/* Individual Authentic Brand Styling on Hover */
+.connect-social-email:hover {
   background: #09090b;
+  border-color: #09090b;
   color: #ffffff;
-  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(9, 9, 11, 0.22);
+}
+
+.connect-social-whatsapp:hover {
+  background: #25D366;
+  border-color: #25D366;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.38);
+}
+
+.connect-social-linkedin:hover {
+  background: #0A66C2;
+  border-color: #0A66C2;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(10, 102, 194, 0.38);
+}
+
+.connect-social-github:hover {
+  background: #24292F;
+  border-color: #24292F;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(36, 41, 47, 0.38);
 }
 
 /* Bottom Divider */
@@ -1696,7 +1736,12 @@ html, body {
   }
 
   .connect-profile-mobile .connect-social-row {
-    gap: 14px !important;
+    gap: 16px !important;
+  }
+
+  .connect-profile-mobile .connect-social-icon-btn {
+    width: 46px !important;
+    height: 46px !important;
   }
 
   /* Desktop side column hidden on mobile */
