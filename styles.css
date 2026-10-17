@@ -968,40 +968,15 @@ html, body {
 }
 
 .connect-social-icon-btn:hover {
+  background: #09090b;
+  border-color: #09090b;
+  color: #ffffff;
   transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(9, 9, 11, 0.22);
 }
 
 .connect-social-icon-btn:hover svg {
   transform: scale(1.12);
-}
-
-/* Individual Authentic Brand Styling on Hover */
-.connect-social-email:hover {
-  background: #09090b;
-  border-color: #09090b;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(9, 9, 11, 0.22);
-}
-
-.connect-social-whatsapp:hover {
-  background: #25D366;
-  border-color: #25D366;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.38);
-}
-
-.connect-social-linkedin:hover {
-  background: #0A66C2;
-  border-color: #0A66C2;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(10, 102, 194, 0.38);
-}
-
-.connect-social-github:hover {
-  background: #24292F;
-  border-color: #24292F;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(36, 41, 47, 0.38);
 }
 
 /* Bottom Divider */
