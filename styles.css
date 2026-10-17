@@ -71,6 +71,126 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ==========================================================================
+   STATEMENT SECTION (#statement) — Global Typography & Layout
+   ========================================================================== */
+.statement-shell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.statement-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  max-width: 26ch !important;
+  margin: 0 auto !important;
+  gap: clamp(16px, 2.5vw, 32px) !important;
+  padding: 0 20px !important;
+}
+
+.statement-shell p.statement-lead,
+.statement-shell .statement-lead,
+.statement-lead {
+  font-family: var(--heading) !important;
+  font-size: clamp(2.8rem, 5.8vw, 5.6rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.05em !important;
+  color: #08060d !important;
+  max-width: 18ch !important;
+  text-align: center !important;
+  margin: 0 !important;
+  text-wrap: balance !important;
+}
+
+.statement-shell p.statement-sub,
+.statement-shell .statement-sub,
+.statement-sub {
+  font-family: var(--sans) !important;
+  font-size: clamp(1.2rem, 2.1vw, 1.75rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.01em !important;
+  color: #5f5868 !important;
+  max-width: 32ch !important;
+  text-align: center !important;
+  margin: 0 !important;
+  opacity: 0.9 !important;
+}
+
+/* ==========================================================================
+   SHARED INTERACTIVE MINIMALIST COMPASS (Desktop Rail & Mobile Dock)
+   ========================================================================== */
+.side-rail-compass {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.28s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.side-rail-compass .compass-circle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.side-rail-compass .compass-needle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: 49.96% 49.08%;
+  transform: rotate(0deg) scale(0.84);
+  animation: compassNeedleSpin 14s linear infinite;
+  will-change: transform;
+  transition: filter 0.28s ease;
+}
+
+.side-rail-flower-link:hover .compass-needle,
+.mobile-nav-compass-link:hover .compass-needle {
+  animation-duration: 3s;
+}
+
+.side-rail-compass .compass-needle.is-burst {
+  animation: compassNeedleBurst 1.2s cubic-bezier(0.12, 0.8, 0.22, 1) !important;
+}
+
+@keyframes compassNeedleSpin {
+  from {
+    transform: rotate(0deg) scale(0.84);
+  }
+  to {
+    transform: rotate(360deg) scale(0.84);
+  }
+}
+
+@keyframes compassNeedleBurst {
+  from {
+    transform: rotate(0deg) scale(0.84);
+  }
+  to {
+    transform: rotate(720deg) scale(0.84);
+  }
+}
+
+/* ==========================================================================
    DESKTOP VERTICAL SIDE RAIL (> 1024px)
    ========================================================================== */
 .desktop-side-rail {
@@ -127,68 +247,10 @@ html.lenis, html.lenis body { height: auto; }
     transition: filter 0.28s ease;
   }
 
-  /* Interactive Minimalist Compass */
-  .side-rail-compass {
-    position: relative;
+  /* Desktop side rail compass size */
+  .desktop-side-rail .side-rail-compass {
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: filter 0.28s ease;
-  }
-
-  .side-rail-compass .compass-circle {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .side-rail-compass .compass-needle {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-    transform-origin: 49.96% 49.08%;
-    transform: rotate(0deg) scale(0.84);
-    animation: compassNeedleSpin 14s linear infinite;
-    will-change: transform;
-    transition: filter 0.28s ease;
-  }
-
-  .side-rail-flower-link:hover .compass-needle {
-    animation-duration: 3s;
-  }
-
-  .side-rail-compass .compass-needle.is-burst {
-    animation: compassNeedleBurst 1.2s cubic-bezier(0.12, 0.8, 0.22, 1) !important;
-  }
-
-  @keyframes compassNeedleSpin {
-    from {
-      transform: rotate(0deg) scale(0.84);
-    }
-    to {
-      transform: rotate(360deg) scale(0.84);
-    }
-  }
-
-  @keyframes compassNeedleBurst {
-    from {
-      transform: rotate(0deg) scale(0.84);
-    }
-    to {
-      transform: rotate(720deg) scale(0.84);
-    }
   }
 
   /* Vertical stem line between flower and navigation icons */
@@ -408,39 +470,97 @@ html.lenis, html.lenis body { height: auto; }
   }
 }
 
-/* Mobile: Bottom of screen */
+/* Mobile: Docked Bottom Native App Bar (<= 1024px) */
 @media (max-width: 1024px) {
   .floating-bottom-nav {
+    position: fixed !important;
     top: auto !important;
-    bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
-    padding: 5px 12px !important;
-    gap: 6px !important;
-    max-width: calc(100vw - 24px) !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 8px 16px max(10px, env(safe-area-inset-bottom, 10px)) !important;
+    gap: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    z-index: 99999 !important;
+  }
+
+  .mobile-nav-compass-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .mobile-nav-compass {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    transition: transform 0.22s ease;
+  }
+
+  .mobile-nav-compass-link:active .mobile-nav-compass {
+    transform: scale(0.9);
+  }
+
+  .mobile-nav-stem-divider {
+    width: 1px;
+    height: 24px;
+    background: currentColor;
+    opacity: 0.22;
+    margin: 0 10px 0 2px;
+    flex-shrink: 0;
+    border-radius: 1px;
+  }
+
+  .mobile-nav-items-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    gap: 2px;
   }
 
   .floating-nav-item {
-    min-width: 46px !important;
+    flex: 1;
+    min-width: 0 !important;
     min-height: 40px !important;
-    padding: 8px 12px !important;
-    border-radius: 9999px !important;
+    padding: 6px 4px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative;
+    transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
   }
 }
 
 /* Transparent Glass Theme: Over Dark Background (White Icons) */
 .floating-bottom-nav.is-on-dark,
 .floating-bottom-nav:not(.is-on-light) {
-  background: rgba(18, 18, 22, 0.45);
+  background: rgba(10, 10, 14, 0.78);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.45), 0 4px 14px -2px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
 }
 
-.floating-bottom-nav.is-on-dark:hover,
-.floating-bottom-nav:not(.is-on-light):hover {
-  background: rgba(22, 22, 28, 0.58);
-  border-color: rgba(255, 255, 255, 0.26);
-  box-shadow: 0 16px 42px -4px rgba(0, 0, 0, 0.55), 0 6px 18px -2px rgba(0, 0, 0, 0.35);
+.floating-bottom-nav.is-on-dark .side-rail-compass,
+.floating-bottom-nav:not(.is-on-light) .side-rail-compass {
+  filter: brightness(0) invert(1);
 }
 
 .floating-bottom-nav.is-on-dark .floating-nav-item,
@@ -451,51 +571,41 @@ html.lenis, html.lenis body { height: auto; }
 .floating-bottom-nav.is-on-dark .floating-nav-item:hover,
 .floating-bottom-nav:not(.is-on-light) .floating-nav-item:hover {
   color: #ffffff;
-  transform: scale(1.12);
+  transform: scale(1.1);
 }
 
 .floating-bottom-nav.is-on-dark .floating-nav-item.is-active,
 .floating-bottom-nav:not(.is-on-light) .floating-nav-item.is-active {
   color: #ffffff;
-  transform: scale(1.14);
-}
-
-.floating-bottom-nav.is-on-dark .floating-nav-divider,
-.floating-bottom-nav:not(.is-on-light) .floating-nav-divider {
-  background: rgba(255, 255, 255, 0.14);
+  transform: scale(1.12);
 }
 
 /* Transparent Glass Theme: Over Light Background (Black Icons) */
 .floating-bottom-nav.is-on-light {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.84);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(8, 6, 13, 0.09);
-  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.09), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  border-top: 1px solid rgba(8, 6, 13, 0.08);
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.06);
+  color: #08060d;
 }
 
-.floating-bottom-nav.is-on-light:hover {
-  background: rgba(255, 255, 255, 0.84);
-  border-color: rgba(8, 6, 13, 0.15);
-  box-shadow: 0 16px 42px -4px rgba(0, 0, 0, 0.12), 0 6px 16px -2px rgba(0, 0, 0, 0.06);
+.floating-bottom-nav.is-on-light .side-rail-compass {
+  filter: brightness(0);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-item {
-  color: rgba(8, 6, 13, 0.58);
+  color: rgba(8, 6, 13, 0.55);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-item:hover {
   color: #08060d;
-  transform: scale(1.12);
+  transform: scale(1.1);
 }
 
 .floating-bottom-nav.is-on-light .floating-nav-item.is-active {
   color: #08060d;
-  transform: scale(1.14);
-}
-
-.floating-bottom-nav.is-on-light .floating-nav-divider {
-  background: rgba(8, 6, 13, 0.09);
+  transform: scale(1.12);
 }
 
 .floating-nav-item {
@@ -1246,15 +1356,25 @@ html, body {
     box-sizing: border-box !important;
   }
 
-  .statement-shell p {
-    font-size: clamp(2.4rem, 8.5vw, 3.6rem) !important;
-    max-width: 12ch !important;
-    line-height: 1.08 !important;
+  .statement-shell .statement-content {
+    max-width: 20ch !important;
+    gap: 16px !important;
+    padding: 0 16px !important;
+  }
+
+  .statement-shell .statement-lead,
+  .statement-lead {
+    font-size: clamp(2rem, 7.5vw, 2.85rem) !important;
+    line-height: 1.12 !important;
     letter-spacing: -0.04em !important;
-    text-align: center !important;
-    margin: 0 !important;
-    color: #08060d !important;
-    font-weight: 700 !important;
+    max-width: 15ch !important;
+  }
+
+  .statement-shell .statement-sub,
+  .statement-sub {
+    font-size: clamp(1rem, 3.8vw, 1.25rem) !important;
+    line-height: 1.45 !important;
+    max-width: 24ch !important;
   }
 
   /* ------------------------------------------------------------------------
@@ -1816,22 +1936,26 @@ html, body {
   }
 
   /* ------------------------------------------------------------------------
-     7. FLOATING BOTTOM NAVIGATION DOCK (Mobile Spacing)
+     7. DOCKED BOTTOM NAVIGATION BAR (Mobile Spacing)
      ------------------------------------------------------------------------ */
   .floating-bottom-nav {
     top: auto !important;
-    bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
-    padding: 6px 12px !important;
-    gap: 6px !important;
-    max-width: calc(100vw - 24px) !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    padding: 8px 12px max(10px, env(safe-area-inset-bottom, 10px)) !important;
+    gap: 0 !important;
   }
 
   .floating-nav-item {
-    min-width: 52px !important;
-    min-height: 44px !important;
-    padding: 6px 11px !important;
-    border-radius: 9999px !important;
-    gap: 2px !important;
+    min-width: 0 !important;
+    min-height: 40px !important;
+    padding: 6px 2px !important;
+    border-radius: 10px !important;
   }
 
   .floating-nav-icon svg {
@@ -1861,11 +1985,23 @@ html, body {
     font-size: clamp(1.65rem, 6.8vw, 2.1rem) !important;
   }
   .floating-bottom-nav {
-    padding: 4px 6px !important;
+    padding: 6px 8px max(8px, env(safe-area-inset-bottom, 8px)) !important;
+  }
+  .mobile-nav-compass {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .mobile-nav-stem-divider {
+    height: 20px !important;
+    margin: 0 6px 0 0 !important;
   }
   .floating-nav-item {
-    min-width: 40px !important;
-    padding: 5px 7px !important;
+    min-width: 0 !important;
+    padding: 4px 2px !important;
+  }
+  .floating-nav-icon svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 }
 

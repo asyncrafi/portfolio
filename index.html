@@ -48,10 +48,10 @@
       }
     </script>
     <title>Md Shamsuzzaman (Rafi) — Software Engineer</title>
-    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=20"></script>
+    <script type="module" crossorigin src="./assets/index-X50Ikt_1.js?v=21"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CGH_cqr6.css?v=26">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./styles.css?v=28">
+    <link rel="stylesheet" href="./styles.css?v=29">
   </head>
   <body>
     <div id="root"></div>
@@ -126,48 +126,56 @@
       </div>
     </aside>
 
-    <!-- Floating Bottom Navigation Dock (Mobile <= 1024px) -->
-    <nav class="floating-bottom-nav" id="floating-bottom-nav" aria-label="Quick Navigation">
-      <a href="#center" class="floating-nav-item is-active" data-section="center" aria-label="Home">
-        <span class="floating-nav-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-          </svg>
-        </span>
+    <!-- Docked Bottom Navigation Bar (Mobile <= 1024px) -->
+    <nav class="floating-bottom-nav" id="floating-bottom-nav" aria-label="Mobile Navigation">
+      <!-- 1. Interactive Compass Icon (Back to Top / Spin) -->
+      <a href="#center" class="mobile-nav-compass-link" id="mobile-nav-compass-btn" aria-label="Md Shamsuzzaman - Back to top">
+        <div class="side-rail-compass mobile-nav-compass" aria-hidden="true">
+          <img src="./assets/Minimalist Compass Circle Icon.png" class="compass-circle" alt="" />
+          <img src="./assets/Minimalist White Compass Needle.png" class="compass-needle" alt="" />
+        </div>
       </a>
 
-      <div class="floating-nav-divider" aria-hidden="true"></div>
+      <!-- 2. Subtle Thin Vertical Divider -->
+      <div class="mobile-nav-stem-divider" aria-hidden="true"></div>
 
-      <a href="#skills" class="floating-nav-item" data-section="experience" aria-label="Skills & Experience">
-        <span class="floating-nav-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="7 8 3 12 7 16"></polyline>
-            <polyline points="17 8 21 12 17 16"></polyline>
-            <line x1="14" y1="4" x2="10" y2="20"></line>
-          </svg>
-        </span>
-      </a>
+      <!-- 3. Navigation Items Group -->
+      <div class="mobile-nav-items-group">
+        <a href="#center" class="floating-nav-item is-active" data-section="center" aria-label="Home">
+          <span class="floating-nav-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+          </span>
+        </a>
 
-      <div class="floating-nav-divider" aria-hidden="true"></div>
+        <a href="#skills" class="floating-nav-item" data-section="experience" aria-label="Skills & Experience">
+          <span class="floating-nav-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="7 8 3 12 7 16"></polyline>
+              <polyline points="17 8 21 12 17 16"></polyline>
+              <line x1="14" y1="4" x2="10" y2="20"></line>
+            </svg>
+          </span>
+        </a>
 
-      <a href="#projects" class="floating-nav-item" data-section="projects" aria-label="Projects">
-        <span class="floating-nav-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-          </svg>
-        </span>
-      </a>
+        <a href="#projects" class="floating-nav-item" data-section="projects" aria-label="Projects">
+          <span class="floating-nav-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </span>
+        </a>
 
-      <div class="floating-nav-divider" aria-hidden="true"></div>
-
-      <a href="#contact" class="floating-nav-item" data-section="contact" aria-label="Contact">
-        <span class="floating-nav-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-          </svg>
-        </span>
-      </a>
+        <a href="#contact" class="floating-nav-item" data-section="contact" aria-label="Contact">
+          <span class="floating-nav-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
     </nav>
 
     <script>
@@ -229,28 +237,38 @@
             requestAnimationFrame(step);
           }
 
+          function handleCompassClick(e, needle, getBursting, setBursting) {
+            e.preventDefault();
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            if (scrollY > 120) {
+              smoothScrollSlow(0, 1600);
+              setActive('center');
+            } else {
+              if (!getBursting() && needle) {
+                setBursting(true);
+                needle.classList.remove('is-burst');
+                void needle.offsetWidth;
+                needle.classList.add('is-burst');
+                setTimeout(() => {
+                  needle.classList.remove('is-burst');
+                  setBursting(false);
+                }, 1200);
+              }
+            }
+          }
+
           if (brandBtn) {
             brandBtn.addEventListener('click', function(e) {
-              e.preventDefault();
-              const scrollY = window.scrollY || window.pageYOffset || 0;
+              handleCompassClick(e, compassNeedle, () => isBursting, (v) => { isBursting = v; });
+            });
+          }
 
-              if (scrollY > 120) {
-                // When scrolled down: smoothly glide back up to top
-                smoothScrollSlow(0, 1600);
-                setActive('center');
-              } else {
-                // When already at the top: trigger playful 720deg spin flick burst silently (no text)
-                if (!isBursting && compassNeedle) {
-                  isBursting = true;
-                  compassNeedle.classList.remove('is-burst');
-                  void compassNeedle.offsetWidth;
-                  compassNeedle.classList.add('is-burst');
-                  setTimeout(() => {
-                    compassNeedle.classList.remove('is-burst');
-                    isBursting = false;
-                  }, 1200);
-                }
-              }
+          const mobileCompassBtn = document.getElementById('mobile-nav-compass-btn');
+          const mobileCompassNeedle = mobileCompassBtn ? mobileCompassBtn.querySelector('.compass-needle') : null;
+          let isMobileBursting = false;
+          if (mobileCompassBtn) {
+            mobileCompassBtn.addEventListener('click', function(e) {
+              handleCompassClick(e, mobileCompassNeedle, () => isMobileBursting, (v) => { isMobileBursting = v; });
             });
           }
 
@@ -360,16 +378,11 @@
                 }
               }
             } else if (!isDesktop && mobileNav) {
-              // Mobile Contrast Detection: Probe directly under the bottom dock
+              // Mobile Contrast Detection: Probe directly above the docked bottom app bar
               const navRect = mobileNav.getBoundingClientRect();
-              const probeY = navRect.top + navRect.height / 2;
-              const probeX = 16;
-
-              let probedEl = document.elementFromPoint(probeX, probeY);
-              if (!probedEl || probedEl === mobileNav || mobileNav.contains(probedEl)) {
-                const altX = (navRect.left - 24 > 0) ? (navRect.left - 24) : (navRect.right + 24);
-                probedEl = document.elementFromPoint(altX, probeY);
-              }
+              const probeY = Math.max(10, navRect.top - 12);
+              const probeX = Math.round(window.innerWidth * 0.5);
+              const probedEl = document.elementFromPoint(probeX, probeY);
 
               const isOverLight = !!(probedEl && probedEl.closest('#statement, #experience, #contact'));
 
