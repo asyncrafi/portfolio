@@ -114,40 +114,60 @@
   }
 
   /* Interactive Minimalist Compass */
-  .side-rail-compass {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: filter 0.28s ease;
+  .side-rail-compass,
+  .mobile-nav-compass {
+    position: relative !important;
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: filter 0.28s ease, transform 0.22s ease !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
-  .side-rail-compass .compass-circle {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    pointer-events: none;
-    user-select: none;
+  .mobile-nav-compass {
+    width: 32px !important;
+    height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
   }
 
-  .side-rail-compass .compass-needle {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-    transform-origin: 49.96% 49.08%;
-    transform: rotate(var(--compass-angle, 0deg)) scale(0.84);
-    will-change: transform;
-    transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), filter 0.28s ease;
+  .side-rail-compass .compass-circle,
+  .mobile-nav-compass .compass-circle,
+  .compass-circle {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    pointer-events: none !important;
+    user-select: none !important;
+  }
+
+  .side-rail-compass .compass-needle,
+  .mobile-nav-compass .compass-needle,
+  .compass-needle {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    transform-origin: 49.96% 49.08% !important;
+    transform: rotate(var(--compass-angle, 0deg)) scale(0.84) !important;
+    will-change: transform !important;
+    transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), filter 0.28s ease !important;
   }
 
   .side-rail-flower-link:hover .compass-needle,
@@ -155,7 +175,8 @@
     transform: rotate(calc(var(--compass-angle, 0deg) + 14deg)) scale(0.88);
   }
 
-  .side-rail-compass .compass-needle.is-burst {
+  .side-rail-compass .compass-needle.is-burst,
+  .mobile-nav-compass .compass-needle.is-burst {
     animation: compassNeedleBurst 1.1s cubic-bezier(0.12, 0.8, 0.22, 1) !important;
   }
 
