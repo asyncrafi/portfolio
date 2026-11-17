@@ -2054,8 +2054,16 @@ html, body {
 
 @media (min-width: 1025px) {
   .skills-group {
-    grid-template-columns: minmax(220px, 1fr) minmax(0, 2.5fr) !important;
-    gap: 48px !important;
+    grid-template-columns: 340px 1fr !important;
+    gap: 80px !important;
+  }
+  .skills-nav-label {
+    font-size: clamp(2rem, 2.6vw, 3rem) !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.03em !important;
+  }
+  .skills-list {
+    gap: 22px 32px !important;
   }
   .skill-name {
     white-space: nowrap;
