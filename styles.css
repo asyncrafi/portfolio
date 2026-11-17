@@ -2052,3 +2052,12 @@ html, body {
   }
 }
 
+@media (min-width: 1025px) {
+  .skills-group {
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 2.5fr) !important;
+    gap: 48px !important;
+  }
+  .skill-name {
+    white-space: nowrap;
+  }
+}
